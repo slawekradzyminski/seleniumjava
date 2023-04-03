@@ -1,10 +1,15 @@
-package com.awesome.testing.local;
+package com.awesome.testing.cdp.remote;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.events.DomMutationEvent;
+import org.openqa.selenium.logging.EventType;
 import org.openqa.selenium.logging.HasLogEvents;
+import org.openqa.selenium.remote.Augmenter;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
@@ -13,13 +18,27 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.devtools.events.CdpEventTypes.domMutation;
 
-public class MutableObservationTest extends LocalTest {
+public class GridMutableObservationTest extends RemoteTest {
 
     private final AtomicReference<DomMutationEvent> seen = new AtomicReference<>();
+    private final AtomicReference<WebDriver> augmentedDriver = new AtomicReference<>();
     private final CountDownLatch latch = new CountDownLatch(1);
 
     @BeforeEach
     public void setupEventListener() {
+        driver = new Augmenter()
+                .addDriverAugmentation("chrome",
+                        HasLogEvents.class,
+                        (caps, exec) -> new HasLogEvents() {
+                            @Override
+                            public <X> void onLogEvent(EventType<X> kind) {
+                                kind.initializeListener(augmentedDriver.get());
+                            }
+                        }).augment(driver);
+
+        DevTools devTools = ((HasDevTools) driver).getDevTools();
+        devTools.createSession();
+        augmentedDriver.set(driver);
         ((HasLogEvents) driver).onLogEvent(domMutation(mutation -> {
             seen.set(mutation);
             latch.countDown();

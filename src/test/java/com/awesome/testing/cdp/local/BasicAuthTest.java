@@ -1,4 +1,4 @@
-package com.awesome.testing.local;
+package com.awesome.testing.cdp.local;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

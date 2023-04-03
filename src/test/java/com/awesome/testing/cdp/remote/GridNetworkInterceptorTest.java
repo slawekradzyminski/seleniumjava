@@ -1,4 +1,4 @@
-package com.awesome.testing.remote;
+package com.awesome.testing.cdp.remote;
 
 import com.google.common.net.MediaType;
 import org.junit.jupiter.api.BeforeEach;

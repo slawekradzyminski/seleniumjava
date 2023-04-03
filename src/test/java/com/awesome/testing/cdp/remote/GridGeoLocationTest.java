@@ -1,20 +1,23 @@
-package com.awesome.testing.local;
+package com.awesome.testing.cdp.remote;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v111.emulation.Emulation;
+import org.openqa.selenium.remote.Augmenter;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GeoLocationTest extends LocalTest {
+public class GridGeoLocationTest extends RemoteTest {
 
     @BeforeEach
     public void setUp() {
-        DevTools devTools = driver.getDevTools();
+        driver = new Augmenter().augment(driver);
+        DevTools devTools = ((HasDevTools) driver).getDevTools();
         devTools.createSession();
         devTools.send(Emulation.setGeolocationOverride(
                 Optional.of(52.5043),

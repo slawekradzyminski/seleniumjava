@@ -1,4 +1,4 @@
-package com.awesome.testing.local;
+package com.awesome.testing.cdp.local;
 
 import com.google.common.net.MediaType;
 import org.junit.jupiter.api.BeforeEach;
