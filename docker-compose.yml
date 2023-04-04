@@ -12,8 +12,8 @@ services:
       - SE_NODE_GRID_URL=http://localhost:4444
       - SE_NODE_SESSION_TIMEOUT=60
 
-  edge:
-    image: selenium/node-edge:4.8.3
+  firefox:
+    image: selenium/node-firefox:4.8.3
     shm_size: 2gb
     depends_on:
       - selenium-hub
