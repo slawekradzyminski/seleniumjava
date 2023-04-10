@@ -31,10 +31,12 @@ public class PerformanceMetricsTest extends LocalTest {
         driver.get("https://awesome-testing.com");
 
         // then
-        metricList.forEach(metric -> {
-            log.info("{} = {}", metric.getName(), metric.getValue());
-            assertThat(metric.getValue().longValue()).isGreaterThanOrEqualTo(0);
-        });
+        metricList.forEach(PerformanceMetricsTest::logAndAssert);
+    }
+
+    private static void logAndAssert(Metric metric) {
+        log.info("{} = {}", metric.getName(), metric.getValue());
+        assertThat(metric.getValue().longValue()).isGreaterThanOrEqualTo(0);
     }
 
 }
