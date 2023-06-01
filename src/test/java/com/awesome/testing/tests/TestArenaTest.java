@@ -1,6 +1,6 @@
 package com.awesome.testing.tests;
 
-import com.awesome.testing.pages.LoginPage;
+import com.awesome.testing.pages.testarena.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestArenaTest extends LocalTest {
