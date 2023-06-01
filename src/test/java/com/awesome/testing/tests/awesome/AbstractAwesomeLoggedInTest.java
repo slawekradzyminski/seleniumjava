@@ -2,7 +2,6 @@ package com.awesome.testing.tests.awesome;
 
 import com.awesome.testing.api.ApiLogin;
 import com.awesome.testing.api.ApiRegister;
-import com.awesome.testing.api.dto.login.LoginDto;
 import com.awesome.testing.api.dto.login.LoginResponseDto;
 import com.awesome.testing.generator.User;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
