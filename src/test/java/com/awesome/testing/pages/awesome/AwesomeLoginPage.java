@@ -51,8 +51,7 @@ public class AwesomeLoginPage extends BasePage {
     private WebElement getAlert() {
         By alertBy = By.cssSelector(".alert");
         wait.until(ExpectedConditions.visibilityOfElementLocated(alertBy));
-        WebElement alert = driver.findElement(alertBy);
-        return alert;
+        return driver.findElement(alertBy);
     }
 
     public AwesomeRegisterPage clickRegister() {
