@@ -4,7 +4,7 @@ import com.awesome.testing.pages.arena.ArenaLoginPage;
 import com.awesome.testing.tests.SeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
 
-public class ArenaTest extends SeleniumTest {
+public class AbstractArenaTest extends SeleniumTest {
 
     protected ArenaLoginPage arenaLoginPage;
 

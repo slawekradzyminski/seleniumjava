@@ -4,7 +4,7 @@ import com.awesome.testing.pages.awesome.AwesomeLoginPage;
 import com.awesome.testing.tests.SeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
 
-public class AwesomeTest extends SeleniumTest {
+public class AbstractAwesomeTest extends SeleniumTest {
 
     protected AwesomeLoginPage awesomeLoginPage;
 

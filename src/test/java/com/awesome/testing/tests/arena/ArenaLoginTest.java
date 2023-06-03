@@ -2,7 +2,7 @@ package com.awesome.testing.tests.arena;
 
 import org.junit.jupiter.api.Test;
 
-public class ArenaLoginTest extends ArenaTest {
+public class ArenaLoginTest extends AbstractArenaTest {
 
     @Test
     public void shouldSuccessfullyLogin() {
