@@ -10,6 +10,7 @@ public class TestProperties {
     private final Properties properties;
 
     @SneakyThrows
+    @SuppressWarnings("ConstantConditions")
     public TestProperties () {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = rootPath + "test.properties";
