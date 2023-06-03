@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class TestProperties {
 
-    private Properties properties;
+    private final Properties properties;
 
     @SneakyThrows
     public TestProperties () {
