@@ -1,5 +1,7 @@
 package com.awesome.testing.tests.awesome;
 
+import com.awesome.testing.pages.awesome.AwesomeLoginPage;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -22,6 +24,12 @@ public class AwesomeLoginTest extends AbstractAwesomeTest {
     public void shouldLoginWithCsvSource(String username, String password) {
         awesomeLoginPage.attemptLogin(username, password)
                 .verifyUsersDisplayed();
+    }
+
+    @Test
+    public void shouldFailToLogin() {
+        awesomeLoginPage.attemptLogin("wrong", "wrong", AwesomeLoginPage.class)
+                .verifyErrorMessage();
     }
 
     private static Stream<Arguments> credentials() {
