@@ -1,2 +1,5 @@
 .idea
 target
+.allure
+allure_results
+allure-results

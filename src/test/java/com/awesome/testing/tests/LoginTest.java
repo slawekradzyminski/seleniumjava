@@ -6,7 +6,7 @@ public class LoginTest extends TestArenaTest {
 
     @Test
     public void shouldSuccessfullyLogin() {
-        loginPage.attemptLogin("administrator@testarena.pl", "sumXQQ72$L")
+        loginPage.attemptLogin(testProperties.getLogin(), testProperties.getPassword())
                 .openProjects()
                 .waitForTextAreaToLoad();
     }
