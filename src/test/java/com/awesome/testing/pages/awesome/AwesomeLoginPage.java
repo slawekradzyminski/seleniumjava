@@ -21,6 +21,9 @@ public class AwesomeLoginPage extends BasePage {
     @FindBy(css = ".btn-primary")
     private WebElement loginButton;
 
+    @FindBy(css = ".btn-link")
+    private WebElement registerLink;
+
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -38,9 +41,22 @@ public class AwesomeLoginPage extends BasePage {
     }
 
     public void verifyErrorMessage() {
+        assertThat(getAlert().getText()).contains("Invalid username/password supplied");
+    }
+
+    public void verifyRegistrationSuccessfulMessage() {
+        assertThat(getAlert().getText()).contains("Registration successful");
+    }
+
+    private WebElement getAlert() {
         By alertBy = By.cssSelector(".alert");
         wait.until(ExpectedConditions.visibilityOfElementLocated(alertBy));
         WebElement alert = driver.findElement(alertBy);
-        assertThat(alert.getText()).contains("Invalid username/password supplied");
+        return alert;
+    }
+
+    public AwesomeRegisterPage clickRegister() {
+        registerLink.click();
+        return new AwesomeRegisterPage(driver);
     }
 }
