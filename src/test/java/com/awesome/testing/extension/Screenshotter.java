@@ -28,7 +28,8 @@ public class Screenshotter implements AfterTestExecutionCallback {
         if (context.getExecutionException().isPresent()) {
             String baseFileName = getFileName(context);
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            File targetFile = new File("/Users/ocado/IdeaProjects/seleniumjava/target/" + baseFileName + ".png");
+            String userDirectory = System.getProperty("user.dir");
+            File targetFile = new File(userDirectory + "/target/" + baseFileName + ".png");
             try (InputStream is = Files.newInputStream(scrFile.toPath())) {
                 Allure.addAttachment(baseFileName, is);
             }
