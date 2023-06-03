@@ -20,18 +20,17 @@ public abstract class AbstractApi {
     }
 
     @SneakyThrows
-    protected <T> T as(Response response, Class<T> clazz) {
-        ResponseBody responseBody = response.body();
-        return OBJECT_MAPPER.readValue(responseBody.string(), clazz);
+    protected <T> T as(ResponseBody body, Class<T> clazz) {
+        return OBJECT_MAPPER.readValue(body.string(), clazz);
     }
 
     @NotNull
-    protected RequestBody bodyFrom(LoginDto loginDto) {
-        return RequestBody.create(asString(loginDto), JSON);
+    protected RequestBody bodyFrom(Object object) {
+        return RequestBody.create(asString(object), JSON);
     }
 
     @SneakyThrows
-    private String asString(LoginDto loginDto) {
-        return OBJECT_MAPPER.writeValueAsString(loginDto);
+    private String asString(Object object) {
+        return OBJECT_MAPPER.writeValueAsString(object);
     }
 }

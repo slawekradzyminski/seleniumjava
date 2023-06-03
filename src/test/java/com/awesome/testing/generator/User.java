@@ -1,5 +1,6 @@
 package com.awesome.testing.generator;
 
+import com.awesome.testing.api.dto.register.Roles;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,5 +13,6 @@ public class User {
     String firstName;
     String lastName;
     String email;
+    Roles[] roles;
 
 }

@@ -1,8 +1,10 @@
 package com.awesome.testing.tests.awesome;
 
 import com.awesome.testing.api.ApiLogin;
+import com.awesome.testing.api.ApiRegister;
 import com.awesome.testing.api.dto.login.LoginDto;
 import com.awesome.testing.api.dto.login.LoginResponseDto;
+import com.awesome.testing.generator.User;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
 import com.awesome.testing.tests.SeleniumTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,9 +15,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
 
+import static com.awesome.testing.generator.UserProvider.getRandomUser;
+
 public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
 
     private final ApiLogin apiLogin = new ApiLogin();
+    private final ApiRegister apiRegister = new ApiRegister();
 
     protected AwesomeHomePage awesomeHomePage;
     protected String token;
@@ -24,7 +29,9 @@ public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
     @BeforeEach
     public void navigate() {
         driver.get("http://localhost:8081");
-        LoginResponseDto loginResponse = apiLogin.login(new LoginDto("admin", "admin"));
+        User user = getRandomUser();
+        apiRegister.register(user);
+        LoginResponseDto loginResponse = apiLogin.login(user);
         setLocalStorage(driver, loginResponse);
         setCookie(driver, loginResponse.getToken());
         driver.get("http://localhost:8081");
