@@ -1,23 +1,25 @@
-package com.awesome.testing.tests.cdp.local;
+package com.awesome.testing.tests.bidi.cdp.remote;
 
-import com.awesome.testing.tests.LocalTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
+import org.openqa.selenium.remote.Augmenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.awaitility.Awaitility.await;
 
-public class JavascriptExceptionLoggerTest extends LocalTest {
+public class GridJavascriptExceptionLoggerTest extends RemoteTest {
 
     private final List<JavascriptException> jsExceptionsList = new ArrayList<>();
 
     @BeforeEach
     public void setUpLogger() {
-        DevTools devTools = driver.getDevTools();
+        driver = new Augmenter().augment(driver);
+        DevTools devTools = ((HasDevTools) driver).getDevTools();
         devTools.createSession();
         devTools.getDomains().events().addJavascriptExceptionListener(jsExceptionsList::add);
     }

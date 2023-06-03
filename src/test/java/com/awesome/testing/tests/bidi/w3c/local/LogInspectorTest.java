@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.w3c.local;
+package com.awesome.testing.tests.bidi.w3c.local;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;

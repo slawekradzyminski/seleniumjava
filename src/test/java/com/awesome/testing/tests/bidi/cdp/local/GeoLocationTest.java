@@ -1,6 +1,6 @@
-package com.awesome.testing.tests.cdp.local;
+package com.awesome.testing.tests.bidi.cdp.local;
 
-import com.awesome.testing.tests.LocalTest;
+import com.awesome.testing.tests.bidi.BidiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GeoLocationTest extends LocalTest {
+public class GeoLocationTest extends BidiTest {
 
     @BeforeEach
     public void setUp() {

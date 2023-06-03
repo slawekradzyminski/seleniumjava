@@ -8,7 +8,7 @@ public class LoginTest extends TestArenaTest {
     public void shouldSuccessfullyLogin() {
         loginPage.attemptLogin("administrator@testarena.pl", "sumXQQ72$L")
                 .openProjects()
-                .waitForTestAreaToLoad();
+                .waitForTextAreaToLoad();
     }
 
 }

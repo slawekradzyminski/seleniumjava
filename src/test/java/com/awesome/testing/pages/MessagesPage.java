@@ -14,7 +14,7 @@ public class MessagesPage extends BasePage {
         super(driver);
     }
 
-    public void waitForTestAreaToLoad() {
+    public void waitForTextAreaToLoad() {
         wait.until(ExpectedConditions.elementToBeClickable(messageTextArea));
     }
 

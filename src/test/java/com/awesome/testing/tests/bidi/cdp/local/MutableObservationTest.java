@@ -1,6 +1,6 @@
-package com.awesome.testing.tests.cdp.local;
+package com.awesome.testing.tests.bidi.cdp.local;
 
-import com.awesome.testing.tests.LocalTest;
+import com.awesome.testing.tests.bidi.BidiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -14,7 +14,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.devtools.events.CdpEventTypes.domMutation;
 
-public class MutableObservationTest extends LocalTest {
+public class MutableObservationTest extends BidiTest {
 
     private final AtomicReference<DomMutationEvent> seen = new AtomicReference<>();
     private final CountDownLatch latch = new CountDownLatch(1);

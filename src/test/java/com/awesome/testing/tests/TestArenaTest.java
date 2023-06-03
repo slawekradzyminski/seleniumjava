@@ -3,7 +3,7 @@ package com.awesome.testing.tests;
 import com.awesome.testing.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 
-public class TestArenaTest extends LocalTest {
+public class TestArenaTest extends SeleniumTest {
 
     protected LoginPage loginPage;
 

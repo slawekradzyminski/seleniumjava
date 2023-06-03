@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.cdp.remote;
+package com.awesome.testing.tests.bidi.cdp.remote;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

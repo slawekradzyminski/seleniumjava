@@ -1,6 +1,6 @@
-package com.awesome.testing.tests.cdp.local;
+package com.awesome.testing.tests.bidi.cdp.local;
 
-import com.awesome.testing.tests.LocalTest;
+import com.awesome.testing.tests.bidi.BidiTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class PerformanceMetricsTest extends LocalTest {
+public class PerformanceMetricsTest extends BidiTest {
 
     private List<Metric> metricList;
 

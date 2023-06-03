@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.cdp.remote;
+package com.awesome.testing.tests.bidi.cdp.remote;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;

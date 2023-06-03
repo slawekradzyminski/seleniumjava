@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.w3c.remote;
+package com.awesome.testing.tests.bidi.w3c.remote;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.w3c.local;
+package com.awesome.testing.tests.bidi.w3c.local;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;

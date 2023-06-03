@@ -1,13 +1,12 @@
-package com.awesome.testing.tests;
+package com.awesome.testing.tests.bidi;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public abstract class LocalTest {
+public abstract class BidiTest {
 
     protected ChromeDriver driver;
 
