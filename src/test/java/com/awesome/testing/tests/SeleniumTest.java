@@ -2,6 +2,7 @@ package com.awesome.testing.tests;
 
 import com.awesome.testing.extension.Screenshotter;
 import com.awesome.testing.props.TestProperties;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +12,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static com.awesome.testing.listener.SeleniumListener.LISTENER;
 
@@ -30,12 +36,23 @@ public abstract class SeleniumTest {
     /**
      * https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/events/EventFiringDecorator.html
      */
+    @SneakyThrows
     @BeforeEach
     public void setUpDriver() {
-        WebDriver original = new ChromeDriver();
+        testProperties = new TestProperties();
+        WebDriver original = resolveDriver();
         driver = new EventFiringDecorator<>(LISTENER).decorate(original);
         Screenshotter.setDriver(driver);
-        testProperties = new TestProperties();
+    }
+
+    private WebDriver resolveDriver() throws MalformedURLException {
+        if (testProperties.useGrid()) {
+            URL gridUrl = new URL("http://localhost:4444/");
+            ChromeOptions options = new ChromeOptions();
+            return new RemoteWebDriver(gridUrl, options);
+        } else {
+            return new ChromeDriver();
+        }
     }
 
     @AfterEach

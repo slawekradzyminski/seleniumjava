@@ -26,4 +26,8 @@ public class TestProperties {
         return properties.getProperty("password");
     }
 
+    public boolean useGrid() {
+        return Boolean.parseBoolean(properties.getProperty("useGrid"));
+    }
+
 }
