@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,6 +23,7 @@ import java.net.URL;
 
 import static com.awesome.testing.listener.SeleniumListener.LISTENER;
 
+@Execution(ExecutionMode.CONCURRENT)
 @Slf4j
 @ExtendWith(Screenshotter.class)
 public abstract class SeleniumTest {
