@@ -1,6 +1,6 @@
 package com.awesome.testing.pages.awesome;
 
-import com.awesome.testing.components.AwesomeAlert;
+import com.awesome.testing.components.awesome.AwesomeAlert;
 import com.awesome.testing.generator.dto.User;
 import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.By;

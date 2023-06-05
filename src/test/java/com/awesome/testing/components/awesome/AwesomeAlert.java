@@ -1,4 +1,4 @@
-package com.awesome.testing.components;
+package com.awesome.testing.components.awesome;
 
 import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.By;
