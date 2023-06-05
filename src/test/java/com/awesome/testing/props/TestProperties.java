@@ -29,4 +29,8 @@ public class TestProperties {
         return properties.getProperty("password");
     }
 
+    public String getBaseUrl() {
+        return properties.getProperty("baseUrl");
+    }
+
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -16,7 +17,7 @@ public class AwesomeLoginTest extends SeleniumTest {
 
     @BeforeEach
     public void setUp() {
-        driver.get("http://localhost:8081");
+        driver.get(testProperties.getBaseUrl());
         awesomeLoginPage = new AwesomeLoginPage(driver);
     }
 
@@ -27,10 +28,22 @@ public class AwesomeLoginTest extends SeleniumTest {
                 .verifyWelcomeMessage(String.format("Hi %s!", firstName));
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/credentials.csv", numLinesToSkip = 1)
+    public void shouldSuccessfullyLoginWithCsvTestData(String username, String password, String firstName) {
+        awesomeLoginPage.attemptLogin(username, password)
+                .verifyWelcomeMessage(String.format("Hi %s!", firstName));
+    }
+
     @Test
     public void shouldShowErrorMessageOnFailedLogin() {
         awesomeLoginPage.attemptLogin("wrong", "wrong", AwesomeLoginPage.class)
                 .verifyErrorMessageContains("Invalid username/password supplied");
+    }
+
+    @Test
+    public void shouldOpenRegisterPage() {
+        awesomeLoginPage.clickRegister().verifyPageLoaded();
     }
 
     private static Stream<Arguments> credentials() {

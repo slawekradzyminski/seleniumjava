@@ -19,6 +19,9 @@ public class AwesomeLoginPage extends BasePage {
     @FindBy(css = ".btn-primary")
     private WebElement loginButton;
 
+    @FindBy(css = ".btn-link")
+    private WebElement registerLink;
+
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -37,5 +40,10 @@ public class AwesomeLoginPage extends BasePage {
 
     public void verifyErrorMessageContains(String errorMessage) {
         wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-danger"), errorMessage));
+    }
+
+    public AwesomeRegisterPage clickRegister() {
+        registerLink.click();
+        return new AwesomeRegisterPage(driver);
     }
 }
