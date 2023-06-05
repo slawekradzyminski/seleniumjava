@@ -1,20 +1,22 @@
 package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.pages.BasePage;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AwesomeLoginPage extends BasePage {
 
-    @FindBy(name = "username")
+    @FindBy(css = "[name=username]")
     private WebElement usernameField;
 
-    @FindBy(name = "password")
+    @FindBy(css = "[name=password]")
     private WebElement passwordField;
 
-    @FindBy(className = "btn-primary")
+    @FindBy(css = ".btn-primary")
     private WebElement loginButton;
 
     public AwesomeLoginPage(WebDriver driver) {
@@ -22,9 +24,18 @@ public class AwesomeLoginPage extends BasePage {
     }
 
     public AwesomeHomePage attemptLogin(String username, String password) {
+        return attemptLogin(username, password, AwesomeHomePage.class);
+    }
+
+    @SneakyThrows
+    public <T extends BasePage> T attemptLogin(String username, String password, Class<T> expectedPage) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        return new AwesomeHomePage(driver);
+        return expectedPage.getDeclaredConstructor(WebDriver.class).newInstance(driver);
+    }
+
+    public void verifyErrorMessageContains(String errorMessage) {
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-danger"), errorMessage));
     }
 }
