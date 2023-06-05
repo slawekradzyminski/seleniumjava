@@ -46,4 +46,8 @@ public class AwesomeLoginPage extends BasePage {
         registerLink.click();
         return new AwesomeRegisterPage(driver);
     }
+
+    public void verifyRegistrationSuccessMessage(String message) {
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-success"), message));
+    }
 }
