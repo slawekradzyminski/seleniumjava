@@ -2,6 +2,7 @@ package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.generator.dto.User;
 import com.awesome.testing.pages.BasePage;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,12 +38,21 @@ public class AwesomeRegisterPage extends BasePage {
     }
 
     public AwesomeLoginPage attemptRegister(User user) {
+        return attemptRegister(user, AwesomeLoginPage.class);
+    }
+
+    @SneakyThrows
+    public <T extends BasePage> T attemptRegister(User user, Class<T> expectedPage) {
         usernameField.sendKeys(user.getUsername());
         passwordField.sendKeys(user.getPassword());
         firstNameField.sendKeys(user.getFirstName());
         lastNameField.sendKeys(user.getLastName());
         emailField.sendKeys(user.getEmail());
         registerButton.click();
-        return new AwesomeLoginPage(driver);
+        return expectedPage.getDeclaredConstructor(WebDriver.class).newInstance(driver);
+    }
+
+    public void verifyErrorMessageContains(String errorMessage) {
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-danger"), errorMessage));
     }
 }

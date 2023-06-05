@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.awesome.testing.generator.UserProvider.getRandomUser;
+import static com.awesome.testing.generator.UserProvider.getRandomUserWithUsername;
 
 public class AwesomeRegisterTest extends SeleniumTest {
 
@@ -23,6 +24,13 @@ public class AwesomeRegisterTest extends SeleniumTest {
         User user = getRandomUser();
         awesomeRegisterPage.attemptRegister(user)
                 .verifyRegistrationSuccessMessage("Registration successful");
+    }
+
+    @Test
+    public void shouldShowUserAlreadyExistsErrorMessage() {
+        User user = getRandomUserWithUsername("admin");
+        awesomeRegisterPage.attemptRegister(user, AwesomeRegisterPage.class)
+                .verifyErrorMessageContains("Username is already in use");
     }
 
 }

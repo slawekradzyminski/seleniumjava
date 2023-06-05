@@ -19,4 +19,14 @@ public class UserProvider {
                 .build();
     }
 
+    public static User getRandomUserWithUsername(String username) {
+        return User.builder()
+                .username(username)
+                .email(FAKER.internet().emailAddress())
+                .password(FAKER.internet().password())
+                .firstName(FAKER.name().firstName())
+                .lastName(FAKER.name().lastName())
+                .build();
+    }
+
 }
