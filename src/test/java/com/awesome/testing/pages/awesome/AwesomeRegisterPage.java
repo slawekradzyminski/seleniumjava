@@ -1,8 +1,8 @@
 package com.awesome.testing.pages.awesome;
 
+import com.awesome.testing.components.AwesomeAlert;
 import com.awesome.testing.generator.dto.User;
 import com.awesome.testing.pages.BasePage;
-import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AwesomeRegisterPage extends BasePage {
+
+    private final AwesomeAlert awesomeAlert;
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -31,6 +33,7 @@ public class AwesomeRegisterPage extends BasePage {
 
     public AwesomeRegisterPage(WebDriver driver) {
         super(driver);
+        awesomeAlert = new AwesomeAlert(driver);
     }
 
     public void verifyPageLoaded() {
@@ -41,7 +44,6 @@ public class AwesomeRegisterPage extends BasePage {
         return attemptRegister(user, AwesomeLoginPage.class);
     }
 
-    @SneakyThrows
     public <T extends BasePage> T attemptRegister(User user, Class<T> expectedPage) {
         usernameField.sendKeys(user.getUsername());
         passwordField.sendKeys(user.getPassword());
@@ -49,10 +51,10 @@ public class AwesomeRegisterPage extends BasePage {
         lastNameField.sendKeys(user.getLastName());
         emailField.sendKeys(user.getEmail());
         registerButton.click();
-        return expectedPage.getDeclaredConstructor(WebDriver.class).newInstance(driver);
+        return getNewInstance(expectedPage);
     }
 
-    public void verifyErrorMessageContains(String errorMessage) {
-        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-danger"), errorMessage));
+    public AwesomeAlert getAwesomeAlert() {
+        return awesomeAlert;
     }
 }

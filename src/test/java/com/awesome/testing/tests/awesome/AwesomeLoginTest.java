@@ -38,7 +38,8 @@ public class AwesomeLoginTest extends SeleniumTest {
     @Test
     public void shouldShowErrorMessageOnFailedLogin() {
         awesomeLoginPage.attemptLogin("wrong", "wrong", AwesomeLoginPage.class)
-                .verifyErrorMessageContains("Invalid username/password supplied");
+                .getAwesomeAlert()
+                .verifyErrorMessage("Invalid username/password supplied");
     }
 
     @Test

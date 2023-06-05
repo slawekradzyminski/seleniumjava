@@ -1,14 +1,15 @@
 package com.awesome.testing.pages.awesome;
 
+import com.awesome.testing.components.AwesomeAlert;
 import com.awesome.testing.pages.BasePage;
 import lombok.SneakyThrows;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AwesomeLoginPage extends BasePage {
+
+    private final AwesomeAlert awesomeAlert;
 
     @FindBy(css = "[name=username]")
     private WebElement usernameField;
@@ -24,6 +25,7 @@ public class AwesomeLoginPage extends BasePage {
 
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
+        awesomeAlert = new AwesomeAlert(driver);
     }
 
     public AwesomeHomePage attemptLogin(String username, String password) {
@@ -35,11 +37,7 @@ public class AwesomeLoginPage extends BasePage {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        return expectedPage.getDeclaredConstructor(WebDriver.class).newInstance(driver);
-    }
-
-    public void verifyErrorMessageContains(String errorMessage) {
-        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-danger"), errorMessage));
+        return getNewInstance(expectedPage);
     }
 
     public AwesomeRegisterPage clickRegister() {
@@ -47,7 +45,7 @@ public class AwesomeLoginPage extends BasePage {
         return new AwesomeRegisterPage(driver);
     }
 
-    public void verifyRegistrationSuccessMessage(String message) {
-        wait.until(ExpectedConditions.textToBe(By.cssSelector(".alert-success"), message));
+    public AwesomeAlert getAwesomeAlert() {
+        return awesomeAlert;
     }
 }
