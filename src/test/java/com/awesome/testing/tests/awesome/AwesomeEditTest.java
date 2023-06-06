@@ -42,5 +42,4 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
         assertThat(userDetailsDto.getEmail()).isEqualTo(newUser.getEmail());
     }
 
-
 }

@@ -1,5 +1,6 @@
 package com.awesome.testing.generator;
 
+import com.awesome.testing.api.dto.Roles;
 import com.awesome.testing.generator.dto.User;
 import lombok.experimental.UtilityClass;
 import net.datafaker.Faker;
@@ -16,6 +17,7 @@ public class UserProvider {
                 .password(FAKER.internet().password())
                 .firstName(FAKER.name().firstName())
                 .lastName(FAKER.name().lastName())
+                .roles(new Roles[]{Roles.ROLE_CLIENT, Roles.ROLE_ADMIN})
                 .build();
     }
 
@@ -26,6 +28,7 @@ public class UserProvider {
                 .password(FAKER.internet().password())
                 .firstName(FAKER.name().firstName())
                 .lastName(FAKER.name().lastName())
+                .roles(new Roles[]{Roles.ROLE_CLIENT, Roles.ROLE_ADMIN})
                 .build();
     }
 

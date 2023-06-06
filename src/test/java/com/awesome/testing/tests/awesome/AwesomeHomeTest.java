@@ -15,7 +15,7 @@ public class AwesomeHomeTest extends AbstractAwesomeLoggedInTest {
 
     @Test
     public void shouldDisplayWelcomeMessage() {
-        awesomeHomePage.verifyWelcomeMessage("Hi Slawomir!");
+        awesomeHomePage.verifyWelcomeMessage(String.format("Hi %s!", user.getFirstName()));
     }
 
     @Test
