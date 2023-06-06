@@ -2,6 +2,7 @@ package com.awesome.testing.pages.arena;
 
 import com.awesome.testing.pages.BasePage;
 import com.awesome.testing.props.TestProperties;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class ArenaHomePage extends BasePage {
         super(driver);
     }
 
+    @Step("Open project")
     public ArenaMessagesPage openProjects() {
         messagesIcon.click();
         return new ArenaMessagesPage(driver);

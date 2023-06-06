@@ -1,6 +1,7 @@
 package com.awesome.testing.pages.arena;
 
 import com.awesome.testing.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,7 @@ public class ArenaMessagesPage extends BasePage {
         super(driver);
     }
 
+    @Step("Wait for load")
     public void waitForTextAreaToLoad() {
         wait.until(ExpectedConditions.elementToBeClickable(messageTextArea));
     }
