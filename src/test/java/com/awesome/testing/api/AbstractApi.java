@@ -6,11 +6,11 @@ import okhttp3.*;
 
 public abstract class AbstractApi {
 
+    protected static final String AUTHORIZATION = "Authorization";
     protected static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
     protected static final String API_BASE_URL = "http://localhost:4001";
     protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     protected static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
 
     /**
      * Java Object to JSON
@@ -29,6 +29,10 @@ public abstract class AbstractApi {
     protected  <T> T toDto(Response response, Class<T> expectedClass) {
         ResponseBody responseBody = response.body();
         return OBJECT_MAPPER.readValue(responseBody.string(), expectedClass);
+    }
+
+    protected String getAuthHeaderValue(String token) {
+        return "Bearer " + token;
     }
 
 }

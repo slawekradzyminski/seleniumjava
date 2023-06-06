@@ -12,7 +12,6 @@ public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
 
     private static final String ADMIN = "admin";
     private final LoginApi loginApi = new LoginApi();
-
     protected String token;
 
     @SneakyThrows
