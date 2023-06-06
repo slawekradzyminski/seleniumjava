@@ -33,4 +33,8 @@ public class TestProperties {
         return properties.getProperty("baseUrl");
     }
 
+    public boolean useGrid() {
+        return Boolean.parseBoolean(properties.getProperty("useGrid"));
+    }
+
 }
