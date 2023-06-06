@@ -13,26 +13,16 @@ import java.lang.reflect.Method;
 public class SeleniumListener {
 
     public final static WebDriverListener LISTENER = new WebDriverListener() {
-//        @Override
-//        public void beforeAnyWebElementCall(WebElement element, Method method, Object[] args) {
-//            log.info("About to call a method {} in element {} with parameters {}",
-//                    method, element, args);
-//        }
-//
-//        @Override
-//        public void afterAnyWebElementCall(WebElement element, Method method, Object[] args, Object result) {
-//            log.info("Method {} called in element {} with parameters {} returned {}",
-//                    method, element, args, result);
-//        }
-
         @Override
-        public void beforeClick(WebElement element) {
-            log.info("About to call element with text {}. Element details are {}", element.getText(), element);
+        public void beforeAnyWebElementCall(WebElement element, Method method, Object[] args) {
+            log.info("About to call a method {} in element {} with parameters {}",
+                    method, element, args);
         }
 
         @Override
-        public void afterClick(WebElement element) {
-            log.info("Clicked element with text {}. Element details are {}", element.getText(), element);
+        public void afterAnyWebElementCall(WebElement element, Method method, Object[] args, Object result) {
+            log.info("Method {} called in element {} with parameters {} returned {}",
+                    method, element, args, result);
         }
 
     };

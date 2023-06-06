@@ -6,11 +6,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+
+import static com.awesome.testing.extensions.SeleniumListener.LISTENER;
 
 public abstract class SeleniumTest {
 
-    protected ChromeDriver driver;
+    protected WebDriver driver;
     protected TestProperties testProperties;
 
     @BeforeAll
@@ -20,7 +24,8 @@ public abstract class SeleniumTest {
 
     @BeforeEach
     public void setUpDriver() {
-        driver = new ChromeDriver();
+        WebDriver original = new ChromeDriver();
+        driver = new EventFiringDecorator<>(LISTENER).decorate(original);
         testProperties = new TestProperties();
     }
 

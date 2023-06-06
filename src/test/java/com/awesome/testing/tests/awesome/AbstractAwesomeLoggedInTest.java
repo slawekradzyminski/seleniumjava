@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.html5.WebStorage;
 
 import static com.awesome.testing.generator.UserProvider.getRandomUser;
 
@@ -29,7 +30,7 @@ public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
         LoginResponseDto loginResponseDto = loginApi.login(user.getUsername(), user.getPassword());
         token = loginResponseDto.getToken();
         driver.manage().addCookie(new Cookie("token", token));
-        driver.getLocalStorage().setItem("user", new ObjectMapper().writeValueAsString(loginResponseDto));
+        ((WebStorage) driver).getLocalStorage().setItem("user", new ObjectMapper().writeValueAsString(loginResponseDto));
         driver.get(testProperties.getBaseUrl());
     }
 
