@@ -13,12 +13,15 @@ public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
     private static final String ADMIN = "admin";
     private final LoginApi loginApi = new LoginApi();
 
+    protected String token;
+
     @SneakyThrows
     @BeforeEach
     public void setUp() {
         driver.get(testProperties.getBaseUrl());
         LoginResponseDto loginResponseDto = loginApi.login(ADMIN, ADMIN);
-        driver.manage().addCookie(new Cookie("token", loginResponseDto.getToken()));
+        token = loginResponseDto.getToken();
+        driver.manage().addCookie(new Cookie("token", token));
         driver.getLocalStorage().setItem("user", new ObjectMapper().writeValueAsString(loginResponseDto));
         driver.get(testProperties.getBaseUrl());
     }

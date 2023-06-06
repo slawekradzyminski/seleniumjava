@@ -34,4 +34,11 @@ public class AwesomeHomePage extends BasePage {
         logoutLink.click();
         return new AwesomeLoginPage(driver);
     }
+
+
+    public AwesomeEditPage clickEditOnLastUser() {
+        List<WebElement> editLinks = driver.findElements(By.cssSelector(".edit"));
+        editLinks.get(editLinks.size() - 1).click();
+        return new AwesomeEditPage(driver);
+    }
 }
