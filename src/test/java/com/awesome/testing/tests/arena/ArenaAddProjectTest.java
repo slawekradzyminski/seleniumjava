@@ -3,6 +3,7 @@ package com.awesome.testing.tests.arena;
 import com.awesome.testing.generator.dto.Project;
 import com.awesome.testing.pages.arena.ArenaAddProjectPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static com.awesome.testing.generator.ProjectProvider.getRandomProject;
@@ -17,7 +18,7 @@ public class ArenaAddProjectTest extends AbstractArenaLoggedInTest {
         arenaAddProjectPage = new ArenaAddProjectPage(driver);
     }
 
-    @Test
+    @RepeatedTest(5)
     public void shouldAddNewProject() {
         Project project = getRandomProject();
         arenaAddProjectPage.addProject(project)
