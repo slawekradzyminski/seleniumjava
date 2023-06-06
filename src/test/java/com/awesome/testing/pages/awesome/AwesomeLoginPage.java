@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class AwesomeLoginPage extends BasePage {
 
     private final AwesomeAlert awesomeAlert;
@@ -22,6 +24,9 @@ public class AwesomeLoginPage extends BasePage {
 
     @FindBy(css = ".btn-link")
     private WebElement registerLink;
+
+    @FindBy(css = "h2")
+    private WebElement header;
 
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
@@ -47,5 +52,9 @@ public class AwesomeLoginPage extends BasePage {
 
     public AwesomeAlert getAwesomeAlert() {
         return awesomeAlert;
+    }
+
+    public void verifyHeader() {
+        assertThat(header.getText()).isEqualTo("Login");
     }
 }

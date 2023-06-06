@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
 
+
     @BeforeEach
     public void setUp() {
         driver.get(testProperties.getBaseUrl());
