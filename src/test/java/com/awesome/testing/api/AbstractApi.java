@@ -11,6 +11,7 @@ public abstract class AbstractApi {
     protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     protected static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
+
     /**
      * Java Object to JSON
      */
