@@ -22,7 +22,8 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
         User newUser = getRandomUser();
 
         awesomeEditPage.editUser(newUser)
-                .verifyUsersDisplayed();
+                .getAlert()
+                .verifySuccessMessage("Updating user successful");
     }
 
 

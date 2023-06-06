@@ -1,5 +1,6 @@
 package com.awesome.testing.pages.awesome;
 
+import com.awesome.testing.components.awesome.AwesomeAlert;
 import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,8 @@ import java.util.List;
 
 public class AwesomeHomePage extends BasePage {
 
+    private final AwesomeAlert awesomeAlert;
+
     @FindBy(css = "li")
     private List<WebElement> userRows;
 
@@ -19,12 +22,12 @@ public class AwesomeHomePage extends BasePage {
 
     public AwesomeHomePage(WebDriver driver) {
         super(driver);
+        awesomeAlert = new AwesomeAlert(driver);
     }
 
     public void verifyWelcomeMessage(String expected) {
         wait.until(ExpectedConditions.textToBe(By.cssSelector("h1"), expected));
     }
-
 
     public void verifyUsersDisplayed() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul li")));
@@ -39,5 +42,9 @@ public class AwesomeHomePage extends BasePage {
         List<WebElement> editLinks = driver.findElements(By.cssSelector(".edit"));
         editLinks.get(editLinks.size() - 1).click();
         return new AwesomeEditPage(driver);
+    }
+
+    public AwesomeAlert getAlert() {
+        return awesomeAlert;
     }
 }
