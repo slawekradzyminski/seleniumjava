@@ -1,5 +1,6 @@
 package com.awesome.testing.tests;
 
+import com.awesome.testing.extensions.ListenerAsClass;
 import com.awesome.testing.props.TestProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,8 +10,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-
-import static com.awesome.testing.extensions.SeleniumListener.LISTENER;
 
 public abstract class SeleniumTest {
 
@@ -25,7 +24,7 @@ public abstract class SeleniumTest {
     @BeforeEach
     public void setUpDriver() {
         WebDriver original = new ChromeDriver();
-        driver = new EventFiringDecorator<>(LISTENER).decorate(original);
+        driver = new EventFiringDecorator<>(new ListenerAsClass()).decorate(original);
         testProperties = new TestProperties();
     }
 
