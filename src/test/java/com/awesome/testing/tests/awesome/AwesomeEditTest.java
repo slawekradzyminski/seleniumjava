@@ -21,7 +21,8 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
     public void shouldSuccessfullyEditUser() {
         User newUser = getRandomUser();
 
-        awesomeEditPage.editUser(newUser);
+        awesomeEditPage.editUser(newUser)
+                .verifyUsersDisplayed();
     }
 
 
