@@ -2,8 +2,10 @@ package com.awesome.testing.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+@Slf4j
 public abstract class AbstractApi {
 
     protected static final String AUTHORIZATION = "Authorization";
@@ -17,7 +19,8 @@ public abstract class AbstractApi {
      */
     @SneakyThrows
     protected RequestBody bodyFrom(Object object) {
-        String bodyAsString = OBJECT_MAPPER.writeValueAsString(object);
+        String bodyAsString = OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+        log.info("Sending {}", bodyAsString);
         return RequestBody.create(bodyAsString, JSON);
     }
 
@@ -27,8 +30,10 @@ public abstract class AbstractApi {
     @SneakyThrows
     @SuppressWarnings("ConstantConditions")
     protected  <T> T toDto(Response response, Class<T> expectedClass) {
-        ResponseBody responseBody = response.body();
-        return OBJECT_MAPPER.readValue(responseBody.string(), expectedClass);
+        String responseBody = response.body().string();
+        T parsedResponse = OBJECT_MAPPER.readValue(responseBody, expectedClass);
+        log.info("Got {}", OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(parsedResponse));
+        return parsedResponse;
     }
 
     protected String getAuthHeaderValue(String token) {

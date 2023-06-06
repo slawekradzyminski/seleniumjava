@@ -7,6 +7,7 @@ import com.awesome.testing.generator.dto.User;
 import com.awesome.testing.tests.SeleniumTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Cookie;
 
@@ -30,6 +31,11 @@ public abstract class AbstractAwesomeLoggedInTest extends SeleniumTest {
         driver.manage().addCookie(new Cookie("token", token));
         driver.getLocalStorage().setItem("user", new ObjectMapper().writeValueAsString(loginResponseDto));
         driver.get(testProperties.getBaseUrl());
+    }
+
+    @AfterEach
+    public void shouldDeleteUser() {
+
     }
 
 }
