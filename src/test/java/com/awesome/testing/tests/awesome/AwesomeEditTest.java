@@ -16,10 +16,12 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
     private final UserApi userApi = new UserApi();
 
     private AwesomeEditPage awesomeEditPage;
+    private String username;
 
     @BeforeEach
     public void openEditPage() {
         awesomeEditPage = new AwesomeHomePage(driver).clickEditOnLastUser();
+        username = awesomeEditPage.readUsername();
     }
 
     @Test
@@ -34,7 +36,7 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
     }
 
     private void verifyUserUpdatedOnServerSide(User newUser) {
-        UserDetailsDto userDetailsDto = userApi.getUserDetails("client", token);
+        UserDetailsDto userDetailsDto = userApi.getUserDetails(username, token);
         assertThat(userDetailsDto.getFirstName()).isEqualTo(newUser.getFirstName());
         assertThat(userDetailsDto.getLastName()).isEqualTo(newUser.getLastName());
         assertThat(userDetailsDto.getEmail()).isEqualTo(newUser.getEmail());

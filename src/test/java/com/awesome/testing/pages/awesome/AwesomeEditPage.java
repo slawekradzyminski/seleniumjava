@@ -17,6 +17,9 @@ public class AwesomeEditPage extends BasePage {
     @FindBy(name = "email")
     private WebElement emailField;
 
+    @FindBy(name = "username")
+    private WebElement usernameField;
+
     @FindBy(className = "btn-primary")
     private WebElement editButton;
 
@@ -33,5 +36,9 @@ public class AwesomeEditPage extends BasePage {
         emailField.sendKeys(newUser.getEmail());
         editButton.click();
         return new AwesomeHomePage(driver);
+    }
+
+    public String readUsername() {
+        return usernameField.getAttribute("value");
     }
 }
