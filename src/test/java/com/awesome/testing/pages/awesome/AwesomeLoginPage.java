@@ -45,6 +45,7 @@ public class AwesomeLoginPage extends BasePage {
         return getNewInstance(expectedPage);
     }
 
+
     public AwesomeRegisterPage clickRegister() {
         registerLink.click();
         return new AwesomeRegisterPage(driver);

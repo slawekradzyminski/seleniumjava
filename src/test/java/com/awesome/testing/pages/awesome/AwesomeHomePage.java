@@ -25,6 +25,7 @@ public class AwesomeHomePage extends BasePage {
         wait.until(ExpectedConditions.textToBe(By.cssSelector("h1"), expected));
     }
 
+
     public void verifyUsersDisplayed() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul li")));
     }
