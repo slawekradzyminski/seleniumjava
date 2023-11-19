@@ -19,9 +19,12 @@ Go to [http://localhost:4444/ui](http://localhost:4444/ui)
 
 ## Allure
 
+Single file generation requires version 2.24.1.
+
 ```commandline
 ./mvnw clean test
 ./mvnw allure:serve
+allure generate --single-file target/allure-results
 ```
 
 
