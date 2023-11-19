@@ -17,5 +17,12 @@ docker-compose up
 
 Go to [http://localhost:4444/ui](http://localhost:4444/ui)
 
+## Allure
+
+```commandline
+./mvnw clean test
+./mvnw allure:serve
+```
+
 
 

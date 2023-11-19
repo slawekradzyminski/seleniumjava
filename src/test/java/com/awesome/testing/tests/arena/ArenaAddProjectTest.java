@@ -7,6 +7,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static com.awesome.testing.generator.ProjectProvider.getRandomProject;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArenaAddProjectTest extends AbstractArenaLoggedInTest {
 
@@ -18,11 +19,13 @@ public class ArenaAddProjectTest extends AbstractArenaLoggedInTest {
         arenaAddProjectPage = new ArenaAddProjectPage(driver);
     }
 
-    @RepeatedTest(5)
+    @Test
     public void shouldAddNewProject() {
         Project project = getRandomProject();
         arenaAddProjectPage.addProject(project)
                 .verifySuccessMessage();
+        // fires screenshot
+        assertThat(2).isEqualTo(3);
     }
 
 }
