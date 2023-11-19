@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v111.emulation.Emulation;
+import org.openqa.selenium.devtools.v119.emulation.Emulation;
 
 import java.util.Optional;
 
