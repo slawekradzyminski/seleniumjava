@@ -45,8 +45,6 @@ public class AwesomeLoginTest extends SeleniumTest {
     @Test
     public void shouldOpenRegisterPage() {
         awesomeLoginPage.clickRegister().verifyPageLoaded();
-
-        assert 2 == 3;
     }
 
     private static Stream<Arguments> credentials() {
