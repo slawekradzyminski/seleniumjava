@@ -14,7 +14,7 @@ public class TestArenaHomePage extends BasePage {
         super(driver);
     }
 
-    public TestArenaMessagesPage openProjects() {
+    public TestArenaMessagesPage openMessagesPage() {
         messagesIcon.click();
         return new TestArenaMessagesPage(driver);
     }
