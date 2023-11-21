@@ -21,6 +21,7 @@ public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
+    private Roles[] roles;
 
     public static UserDto.UserDtoBuilder getRandomUserBuilder() {
         return UserDto.builder()
@@ -28,7 +29,8 @@ public class UserDto {
                 .password(draw(() -> FAKER.internet().password()))
                 .email(FAKER.internet().emailAddress())
                 .firstName(draw(() -> FAKER.name().firstName()))
-                .lastName(draw(() -> FAKER.name().lastName()));
+                .lastName(draw(() -> FAKER.name().lastName()))
+                .roles(new Roles[]{Roles.ROLE_ADMIN, Roles.ROLE_CLIENT});
     }
 
     public static UserDto getRandomUser() {

@@ -1,5 +1,7 @@
 package com.awesome.testing.tests.awesome;
 
+import com.awesome.testing.api.RegisterApi;
+import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
 import com.awesome.testing.pages.awesome.AwesomeLoginPage;
 import com.awesome.testing.tests.SeleniumTest;
@@ -23,6 +25,16 @@ public class AwesomeLoginTest extends SeleniumTest {
     public void shouldSuccessfullyLogin(String username, String password, String firstName) {
         loginPage.attemptLogin(username, password, AwesomeHomePage.class)
                 .verifyHeaderForName(firstName);
+    }
+
+    @Test
+    public void shouldLoginToNewlyCreateUser() {
+        UserDto userDto = UserDto.getRandomUser();
+        RegisterApi registerApi = new RegisterApi();
+        registerApi.register(userDto);
+
+        loginPage.attemptLogin(userDto.getUsername(), userDto.getPassword(), AwesomeHomePage.class)
+                .verifyHeaderForName(userDto.getFirstName());
     }
 
     @Test
