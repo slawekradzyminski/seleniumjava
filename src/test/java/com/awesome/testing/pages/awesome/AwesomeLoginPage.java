@@ -1,13 +1,16 @@
 package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.pages.BasePage;
-import org.openqa.selenium.By;
+import com.awesome.testing.pages.awesome.components.AwesomeAlert;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AwesomeLoginPage extends BasePage {
+
+    @Getter
+    private final AwesomeAlert alert;
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -23,6 +26,7 @@ public class AwesomeLoginPage extends BasePage {
 
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
+        alert = new AwesomeAlert(driver);
     }
 
     public <T extends BasePage> T attemptLogin(String username, String password, Class<T> expectedPage) {
@@ -30,16 +34,6 @@ public class AwesomeLoginPage extends BasePage {
         passwordField.sendKeys(password);
         loginButton.click();
         return newInstanceOf(expectedPage);
-    }
-
-    public void verifyAlertError() {
-        wait.until(ExpectedConditions.textToBe(By.className("alert-danger"),
-                "Invalid username/password supplied"));
-    }
-
-    public void verifyAlertSuccess() {
-        wait.until(ExpectedConditions.textToBe(By.className("alert-success"),
-                "Registration successful"));
     }
 
     public AwesomeRegisterPage clickRegister() {

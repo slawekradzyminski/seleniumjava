@@ -21,7 +21,8 @@ public class AwesomeRegisterTest extends SeleniumTest {
     public void shouldSuccessfullyRegister() {
         UserDto user = UserDto.getRandomUser();
         registerPage.attemptRegister(user, AwesomeLoginPage.class)
-                .verifyAlertSuccess();
+                .getAlert()
+                .verifyAlertSuccess("Registration successful");
     }
 
     @Test
@@ -31,6 +32,7 @@ public class AwesomeRegisterTest extends SeleniumTest {
                 .build();
 
         registerPage.attemptRegister(user, AwesomeRegisterPage.class)
-                .verifyErrorMessage();
+                .getAlert()
+                .verifyAlertFailure("Username is already in use");
     }
 }
