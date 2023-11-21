@@ -33,11 +33,15 @@ public class TestProperties {
         return getStringPropertyOrDefault("browser", "chrome");
     }
 
-    public String getStringProperty(String propertyName) {
+    public String getUrl() {
+        return getStringProperty("url");
+    }
+
+    private String getStringProperty(String propertyName) {
         return System.getProperty(propertyName, properties.getProperty(propertyName));
     }
 
-    public String getStringPropertyOrDefault(String propertyName, String defaultValue) {
+    private String getStringPropertyOrDefault(String propertyName, String defaultValue) {
         return System.getProperty(propertyName, properties.getProperty(propertyName, defaultValue));
     }
 

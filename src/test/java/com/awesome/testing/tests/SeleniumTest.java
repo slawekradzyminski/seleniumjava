@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 public abstract class SeleniumTest {
 
@@ -32,6 +33,7 @@ public abstract class SeleniumTest {
             case "chrome" -> new ChromeDriver();
             case "edge" -> new EdgeDriver();
             case "firefox" -> new FirefoxDriver();
+            case "safari" -> new SafariDriver();
             default -> throw new IllegalStateException("Unexpected value: " + testProperties.getBrowser());
         };
     }

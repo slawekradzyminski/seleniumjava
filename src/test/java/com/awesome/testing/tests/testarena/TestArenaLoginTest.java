@@ -1,8 +1,8 @@
-package com.awesome.testing.tests;
+package com.awesome.testing.tests.testarena;
 
 import org.junit.jupiter.api.Test;
 
-public class LoginTest extends TestArenaTest {
+public class TestArenaLoginTest extends AbstractTestArenaTest {
 
     @Test
     public void shouldSuccessfullyLogin() {
