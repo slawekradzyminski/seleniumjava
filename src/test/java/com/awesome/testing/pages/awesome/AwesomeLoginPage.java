@@ -1,9 +1,11 @@
 package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.pages.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AwesomeLoginPage extends BasePage {
 
@@ -20,10 +22,15 @@ public class AwesomeLoginPage extends BasePage {
         super(driver);
     }
 
-    public AwesomeHomePage attemptLogin(String username, String password) {
+    public <T extends BasePage> T attemptLogin(String username, String password, Class<T> expectedPage) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        return new AwesomeHomePage(driver);
+        return newInstanceOf(expectedPage);
+    }
+
+    public void verifyAlertError() {
+        wait.until(ExpectedConditions.textToBe(By.className("alert-danger"),
+                "Invalid username/password supplied"));
     }
 }
