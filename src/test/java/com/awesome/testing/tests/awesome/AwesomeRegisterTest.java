@@ -19,6 +19,7 @@ public class AwesomeRegisterTest extends SeleniumTest {
     @Test
     public void shouldSuccessfullyRegister() {
         UserDto user = UserDto.getRandomUser();
-//        registerPage.attemptRegister(user);
+        registerPage.attemptRegister(user)
+                .verifyAlertSuccess();
     }
 }

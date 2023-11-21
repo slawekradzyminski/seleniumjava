@@ -37,6 +37,11 @@ public class AwesomeLoginPage extends BasePage {
                 "Invalid username/password supplied"));
     }
 
+    public void verifyAlertSuccess() {
+        wait.until(ExpectedConditions.textToBe(By.className("alert-success"),
+                "Registration successful"));
+    }
+
     public AwesomeRegisterPage clickRegister() {
         registerLink.click();
         return new AwesomeRegisterPage(driver);

@@ -4,11 +4,14 @@ import com.github.javafaker.Faker;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.function.Supplier;
+
 @Builder
 @Slf4j
 @ToString
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public class UserDto {
 
     private static final Faker FAKER = new Faker();
@@ -21,15 +24,31 @@ public class UserDto {
 
     public static UserDto getRandomUser() {
         UserDto userDto = UserDto.builder()
-                .username(FAKER.name().username())
-                .password(FAKER.internet().password())
+                .username(draw(() -> FAKER.name().username()))
+                .password(draw(() -> FAKER.internet().password()))
                 .email(FAKER.internet().emailAddress())
-                .firstName(FAKER.name().firstName())
-                .lastName(FAKER.name().lastName())
+                .firstName(draw(() -> FAKER.name().firstName()))
+                .lastName(draw(() -> FAKER.name().lastName()))
                 .build();
 
         log.info("Using user {}", userDto);
         return userDto;
+    }
+
+    @SneakyThrows
+    private static String draw(Supplier<String> supplier) {
+        String randomString = supplier.get();
+        int i = 1;
+        while (randomString.length() < 4 && i <= 50) {
+            log.warn("Failed to draw correct test data. Retry {}", i);
+            randomString = supplier.get();
+            i++;
+        }
+
+        if (i == 51) {
+            throw new FailedToDrawValidTestDataException();
+        }
+        return randomString;
     }
 
 }
