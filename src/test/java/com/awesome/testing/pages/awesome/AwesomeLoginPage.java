@@ -18,6 +18,9 @@ public class AwesomeLoginPage extends BasePage {
     @FindBy(className = "btn-primary")
     private WebElement loginButton;
 
+    @FindBy(className = "btn-link")
+    private WebElement registerLink;
+
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -32,5 +35,10 @@ public class AwesomeLoginPage extends BasePage {
     public void verifyAlertError() {
         wait.until(ExpectedConditions.textToBe(By.className("alert-danger"),
                 "Invalid username/password supplied"));
+    }
+
+    public AwesomeRegisterPage clickRegister() {
+        registerLink.click();
+        return new AwesomeRegisterPage(driver);
     }
 }
