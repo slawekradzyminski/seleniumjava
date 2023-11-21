@@ -22,15 +22,17 @@ public class UserDto {
     private String firstName;
     private String lastName;
 
-    public static UserDto getRandomUser() {
-        UserDto userDto = UserDto.builder()
+    public static UserDto.UserDtoBuilder getRandomUserBuilder() {
+        return UserDto.builder()
                 .username(draw(() -> FAKER.name().username()))
                 .password(draw(() -> FAKER.internet().password()))
                 .email(FAKER.internet().emailAddress())
                 .firstName(draw(() -> FAKER.name().firstName()))
-                .lastName(draw(() -> FAKER.name().lastName()))
-                .build();
+                .lastName(draw(() -> FAKER.name().lastName()));
+    }
 
+    public static UserDto getRandomUser() {
+        UserDto userDto = getRandomUserBuilder().build();
         log.info("Using user {}", userDto);
         return userDto;
     }

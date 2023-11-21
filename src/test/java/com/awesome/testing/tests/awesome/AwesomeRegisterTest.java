@@ -1,6 +1,7 @@
 package com.awesome.testing.tests.awesome;
 
 import com.awesome.testing.generators.UserDto;
+import com.awesome.testing.pages.awesome.AwesomeLoginPage;
 import com.awesome.testing.pages.awesome.AwesomeRegisterPage;
 import com.awesome.testing.tests.SeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,17 @@ public class AwesomeRegisterTest extends SeleniumTest {
     @Test
     public void shouldSuccessfullyRegister() {
         UserDto user = UserDto.getRandomUser();
-        registerPage.attemptRegister(user)
+        registerPage.attemptRegister(user, AwesomeLoginPage.class)
                 .verifyAlertSuccess();
+    }
+
+    @Test
+    public void shouldShowErrorMessageOnUserAlreadyExists() {
+        UserDto user = UserDto.getRandomUserBuilder()
+                .username("admin")
+                .build();
+
+        registerPage.attemptRegister(user, AwesomeRegisterPage.class)
+                .verifyErrorMessage();
     }
 }
