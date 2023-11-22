@@ -26,7 +26,7 @@ public abstract class AbstractApi {
     }
 
     /**
-     * OkHttpResponse -> Java DTO
+     * OkHttp Response -> Java DTO
      */
     @SneakyThrows
     @SuppressWarnings("ConstantConditions")

@@ -2,7 +2,6 @@ package com.awesome.testing.api;
 
 import com.awesome.testing.api.dto.LoginRequestDto;
 import com.awesome.testing.api.dto.LoginResponseDto;
-import com.awesome.testing.generators.UserDto;
 import lombok.SneakyThrows;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -22,7 +21,5 @@ public class LoginApi extends AbstractApi {
             return toDto(response, LoginResponseDto.class);
         }
     }
-
-
 
 }
