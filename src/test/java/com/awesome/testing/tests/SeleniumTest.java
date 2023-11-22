@@ -2,6 +2,7 @@ package com.awesome.testing.tests;
 
 import com.awesome.testing.extensions.NameLoggerExtension;
 import com.awesome.testing.extensions.ScreenshotTakerExtension;
+import com.awesome.testing.listeners.TestExecutionListener;
 import com.awesome.testing.properties.TestProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 
 @ExtendWith({NameLoggerExtension.class, ScreenshotTakerExtension.class})
 public abstract class SeleniumTest {
@@ -29,7 +31,9 @@ public abstract class SeleniumTest {
     @BeforeEach
     public void setUpTest() {
         testProperties = new TestProperties();
-        driver = getBrowser();
+        WebDriver original = getBrowser();
+        TestExecutionListener listener = new TestExecutionListener();
+        driver = new EventFiringDecorator<>(listener).decorate(original);
         ScreenshotTakerExtension.setDriver(driver);
     }
 
