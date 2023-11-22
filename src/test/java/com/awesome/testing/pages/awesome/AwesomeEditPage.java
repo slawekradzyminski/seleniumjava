@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AwesomeEditPage extends BasePage {
 
     @Getter
-    private AwesomeAlert awesomeAlert;
+    private final AwesomeAlert awesomeAlert;
 
     @FindBy(name = "username")
     private WebElement usernameField;

@@ -41,9 +41,16 @@ public abstract class SeleniumTest {
         ScreenshotTakerExtension.setDriver(driver);
     }
 
+    @AfterEach
+    void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
     private WebDriver getBrowser() {
         return switch (testProperties.getBrowser()) {
-            case "chrome" -> getHeadlessChrome();
+            case "chrome" -> getChromeDriver();
             case "edge" -> new EdgeDriver();
             case "firefox" -> new FirefoxDriver();
             case "safari" -> new SafariDriver();
@@ -51,19 +58,12 @@ public abstract class SeleniumTest {
         };
     }
 
-    private ChromeDriver getHeadlessChrome() {
+    private ChromeDriver getChromeDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (testProperties.headless()) {
             chromeOptions.addArguments("--headless=new");
         }
         return new ChromeDriver(chromeOptions);
-    }
-
-    @AfterEach
-    void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 
 }
