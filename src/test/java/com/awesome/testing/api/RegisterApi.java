@@ -2,12 +2,10 @@ package com.awesome.testing.api;
 
 import com.awesome.testing.generators.UserDto;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class RegisterApi extends AbstractApi {
 
     @SneakyThrows
