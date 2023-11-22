@@ -48,5 +48,7 @@ public class AwesomeLoginTest extends SeleniumTest {
     public void shouldOpenRegisterPage() {
         loginPage.clickRegister()
                 .verifyHeader();
+
+        assert 3 == 2;
     }
 }

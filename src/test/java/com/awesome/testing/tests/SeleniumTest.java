@@ -30,6 +30,7 @@ public abstract class SeleniumTest {
     public void setUpTest() {
         testProperties = new TestProperties();
         driver = getBrowser();
+        ScreenshotTakerExtension.setDriver(driver);
     }
 
     private WebDriver getBrowser() {
