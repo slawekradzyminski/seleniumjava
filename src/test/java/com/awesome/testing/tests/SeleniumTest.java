@@ -12,6 +12,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -39,12 +40,18 @@ public abstract class SeleniumTest {
 
     private WebDriver getBrowser() {
         return switch (testProperties.getBrowser()) {
-            case "chrome" -> new ChromeDriver();
+            case "chrome" -> getHeadlessChrome();
             case "edge" -> new EdgeDriver();
             case "firefox" -> new FirefoxDriver();
             case "safari" -> new SafariDriver();
             default -> throw new IllegalStateException("Unexpected value: " + testProperties.getBrowser());
         };
+    }
+
+    private ChromeDriver getHeadlessChrome() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless=new");
+        return new ChromeDriver(chromeOptions);
     }
 
     @AfterEach

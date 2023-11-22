@@ -2,6 +2,8 @@ package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.awesome.components.AwesomeAlert;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +14,15 @@ import java.util.List;
 
 public class AwesomeHomePage extends BasePage {
 
+    @Getter
+    private AwesomeAlert alert;
+
     @FindBy(css = "li")
     private List<WebElement> userRows;
 
     public AwesomeHomePage(WebDriver driver) {
         super(driver);
+        alert = new AwesomeAlert(driver);
     }
 
     public void verifyHeaderForName(String name) {

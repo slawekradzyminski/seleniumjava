@@ -14,6 +14,7 @@ public abstract class AbstractApi {
     protected static final OkHttpClient OK_HTTP_CLIENT = HttpClientConfiguration.getOkHttpClient();
     protected static final MediaType JSON = MediaType.get("application/json");
     protected static final String BASE_URL = "http://localhost:4001";
+    protected static final String AUTHORIZATION = "Authorization";
     protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     /**
@@ -33,6 +34,10 @@ public abstract class AbstractApi {
     protected <T> T toDto(Response response, Class<T> expectedClass) {
         String responseAsString = response.body().string();
         return OBJECT_MAPPER.readValue(responseAsString, expectedClass);
+    }
+
+    protected String getAuthTokenValue(String token) {
+        return "Bearer " + token;
     }
 
 }

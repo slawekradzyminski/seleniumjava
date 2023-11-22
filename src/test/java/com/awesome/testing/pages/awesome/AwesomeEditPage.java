@@ -1,8 +1,9 @@
 package com.awesome.testing.pages.awesome;
 
-import com.awesome.testing.generators.Roles;
 import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.awesome.components.AwesomeAlert;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,9 @@ import static com.awesome.testing.util.RolesToStringConverter.convert;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AwesomeEditPage extends BasePage {
+
+    @Getter
+    private AwesomeAlert awesomeAlert;
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -27,8 +31,12 @@ public class AwesomeEditPage extends BasePage {
     @FindBy(name = "roles")
     private WebElement rolesField;
 
+    @FindBy(className = "btn-primary")
+    private WebElement editButton;
+
     public AwesomeEditPage(WebDriver driver) {
         super(driver);
+        awesomeAlert = new AwesomeAlert(driver);
     }
 
     public void verifyUserDataAutocompleted(UserDto user) {
@@ -39,6 +47,15 @@ public class AwesomeEditPage extends BasePage {
         assertThat(rolesField.getAttribute("value")).isEqualTo(convert(user.getRoles()));
     }
 
+    public AwesomeHomePage attemptToEditUser(UserDto user) {
+        emailField.clear();
+        emailField.sendKeys(user.getEmail());
+        firstNameField.clear();
+        firstNameField.sendKeys(user.getFirstName());
+        lastNameField.clear();
+        lastNameField.sendKeys(user.getLastName());
+        editButton.click();
 
-
+        return new AwesomeHomePage(driver);
+    }
 }
