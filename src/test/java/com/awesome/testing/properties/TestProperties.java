@@ -37,8 +37,16 @@ public class TestProperties {
         return getStringProperty("url");
     }
 
+    public String getGridUrl() {
+        return getStringProperty("gridUrl");
+    }
+
     public boolean headless() {
         return getBooleanProperty("headless");
+    }
+
+    public boolean useGrid() {
+        return getBooleanProperty("useGrid");
     }
 
     private boolean getBooleanProperty(String propertyName) {
