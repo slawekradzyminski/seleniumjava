@@ -3,6 +3,7 @@ package com.awesome.testing.pages.awesome;
 import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.BasePage;
 import com.awesome.testing.pages.awesome.components.AwesomeAlert;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +26,7 @@ public class AwesomeHomePage extends BasePage {
         alert = new AwesomeAlert(driver);
     }
 
+    @Step("Header verification")
     public void verifyHeaderForName(String name) {
         wait.until(ExpectedConditions.textToBe(By.cssSelector("h1"), getWelcomeMessageFor(name)));
     }

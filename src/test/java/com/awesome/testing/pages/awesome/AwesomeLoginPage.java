@@ -2,6 +2,7 @@ package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.pages.BasePage;
 import com.awesome.testing.pages.awesome.components.AwesomeAlert;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ public class AwesomeLoginPage extends BasePage {
         alert = new AwesomeAlert(driver);
     }
 
+    @Step("Login")
     public <T extends BasePage> T attemptLogin(String username, String password, Class<T> expectedPage) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
