@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
+@Execution(ExecutionMode.CONCURRENT)
 @ExtendWith({NameLoggerExtension.class, ScreenshotTakerExtension.class})
 public abstract class SeleniumTest {
 
@@ -50,7 +53,9 @@ public abstract class SeleniumTest {
 
     private ChromeDriver getHeadlessChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
+        if (testProperties.headless()) {
+            chromeOptions.addArguments("--headless=new");
+        }
         return new ChromeDriver(chromeOptions);
     }
 

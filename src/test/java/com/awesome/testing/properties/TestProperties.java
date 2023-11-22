@@ -37,6 +37,14 @@ public class TestProperties {
         return getStringProperty("url");
     }
 
+    public boolean headless() {
+        return getBooleanProperty("headless");
+    }
+
+    private boolean getBooleanProperty(String propertyName) {
+        return Boolean.parseBoolean(System.getProperty(propertyName, properties.getProperty(propertyName)));
+    }
+
     private String getStringProperty(String propertyName) {
         return System.getProperty(propertyName, properties.getProperty(propertyName));
     }
