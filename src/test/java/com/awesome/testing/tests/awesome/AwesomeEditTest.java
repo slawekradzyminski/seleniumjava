@@ -20,4 +20,9 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
         editPage.verifyUserDataAutocompleted(user);
     }
 
+    @Test
+    public void shouldCorrectlyEditUser() {
+
+    }
+
 }
