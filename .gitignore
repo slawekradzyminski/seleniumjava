@@ -2,3 +2,4 @@
 target
 .allure
 allure-report
+.DS_Store
