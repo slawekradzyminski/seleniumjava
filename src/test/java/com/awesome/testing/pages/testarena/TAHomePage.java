@@ -1,21 +1,22 @@
-package com.awesome.testing.pages;
+package com.awesome.testing.pages.testarena;
 
+import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage {
+public class TAHomePage extends BasePage {
 
     @FindBy(className = "icon_mail")
     private WebElement messagesIcon;
 
-    public HomePage(WebDriver driver) {
+    public TAHomePage(WebDriver driver) {
         super(driver);
     }
 
-    public MessagesPage openProjects() {
+    public TAMessagesPage openProjects() {
         messagesIcon.click();
-        return new MessagesPage(driver);
+        return new TAMessagesPage(driver);
     }
 
 

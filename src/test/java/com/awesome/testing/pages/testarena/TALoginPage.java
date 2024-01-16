@@ -1,10 +1,11 @@
-package com.awesome.testing.pages;
+package com.awesome.testing.pages.testarena;
 
+import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage {
+public class TALoginPage extends BasePage {
 
     @FindBy(id = "email")
     private WebElement emailField;
@@ -15,14 +16,14 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login")
     private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
+    public TALoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public HomePage attemptLogin(String email, String password) {
+    public TAHomePage attemptLogin(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         loginButton.click();
-        return new HomePage(driver);
+        return new TAHomePage(driver);
     }
 }
