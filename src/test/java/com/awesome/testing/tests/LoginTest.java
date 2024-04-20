@@ -1,4 +1,4 @@
-package com.awesome.testing.tests.testarena;
+package com.awesome.testing.tests;
 
 import org.junit.jupiter.api.Test;
 
