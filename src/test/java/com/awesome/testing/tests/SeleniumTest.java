@@ -50,7 +50,7 @@ public abstract class SeleniumTest {
 
     private ChromeDriver getHeadlessChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
+//        chromeOptions.addArguments("--headless=new");
         return new ChromeDriver(chromeOptions);
     }
 

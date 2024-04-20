@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
-import org.openqa.selenium.devtools.v119.log.Log;
-import org.openqa.selenium.devtools.v119.log.model.LogEntry;
+import org.openqa.selenium.devtools.v123.log.Log;
+import org.openqa.selenium.devtools.v123.log.model.LogEntry;
 import org.openqa.selenium.remote.Augmenter;
 
 import java.util.ArrayList;
