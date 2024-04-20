@@ -28,6 +28,6 @@ public class JavascriptExceptionLoggerTest extends BidiTest {
         driver.get("http://the-internet.herokuapp.com/javascript_error");
 
         // then
-        await().until(() -> jsExceptionsList.size() > 0);
+        await().until(() -> !jsExceptionsList.isEmpty());
     }
 }

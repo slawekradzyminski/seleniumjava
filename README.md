@@ -11,11 +11,24 @@ You need to install [Docker](https://docs.docker.com/get-docker/)
 and [compose](https://docs.docker.com/compose/install/) first.
 
 Next run:
+
+### Mac
+
 ```commandline
 docker-compose up
 ```
 
-Go to [http://localhost:4444/ui](http://localhost:4444/ui)
+### Windows
+
+```commandline
+docker compose up
+```
+
+### Verification
+
+Go to UI [http://localhost:4444](http://localhost:4444)
+
+Query status [http://localhost:4444/status](http://localhost:4444/status)
 
 
 
