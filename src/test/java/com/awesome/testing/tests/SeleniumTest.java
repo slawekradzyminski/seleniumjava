@@ -13,7 +13,7 @@ public abstract class SeleniumTest {
 
     @BeforeAll
     static void setupDriver() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().clearDriverCache().setup();
     }
 
     @BeforeEach

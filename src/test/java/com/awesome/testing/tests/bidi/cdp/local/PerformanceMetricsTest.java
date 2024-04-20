@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v119.performance.Performance;
-import org.openqa.selenium.devtools.v119.performance.model.Metric;
+import org.openqa.selenium.devtools.v123.performance.Performance;
+import org.openqa.selenium.devtools.v123.performance.model.Metric;
 
 import java.util.List;
 import java.util.Optional;
