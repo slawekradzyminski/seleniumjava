@@ -20,4 +20,10 @@ public class AwesomeLoginPage extends AbstractBasePage {
         super(driver);
     }
 
+    public AwesomeHomePage attemptLogin(String username, String password) {
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        loginButton.click();
+        return new AwesomeHomePage(driver);
+    }
 }

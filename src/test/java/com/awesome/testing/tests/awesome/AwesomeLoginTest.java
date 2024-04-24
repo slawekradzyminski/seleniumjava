@@ -6,7 +6,8 @@ public class AwesomeLoginTest extends AbstractAwesomeTest {
 
     @Test
     public void shouldSuccessfullyLogin() {
-
+        awesomeLoginPage.attemptLogin("admin", "admin")
+                .assertThatHeaderContains("Slawomir");
     }
 
 }
