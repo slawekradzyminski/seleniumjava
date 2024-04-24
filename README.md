@@ -30,5 +30,8 @@ Go to UI [http://localhost:4444](http://localhost:4444)
 
 Query status [http://localhost:4444/status](http://localhost:4444/status)
 
+## Troubleshooting
+
+- On Windows the path to the project can't contain spacebar.
 
 
