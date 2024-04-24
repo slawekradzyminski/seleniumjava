@@ -2,6 +2,7 @@ package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.AbstractBasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +38,7 @@ public class AwesomeRegisterPage extends AbstractBasePage {
         wait.until((driver) -> header.getText().contains("Register"));
     }
 
-    public AwesomeLoginPage attemptRegister(UserDto userDto) {
+    public <T extends AbstractBasePage> T attemptRegister(UserDto userDto, Class<T> expectedPage) {
         firstNameField.sendKeys(userDto.getFirstName());
         lastNameField.sendKeys(userDto.getLastName());
         usernameField.sendKeys(userDto.getUsername());
@@ -45,7 +46,10 @@ public class AwesomeRegisterPage extends AbstractBasePage {
         emailField.sendKeys(userDto.getEmail());
         registerButton.click();
 
-        return new AwesomeLoginPage(driver);
+        return newInstanceOf(expectedPage);
     }
 
+    public void verifyAlertFailureMessage(String alertMessage) {
+        wait.until(driver -> driver.findElement(By.className("alert-danger")).getText().equals(alertMessage));
+    }
 }
