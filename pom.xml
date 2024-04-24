@@ -68,6 +68,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.25.3</version>
         </dependency>
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>2.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>

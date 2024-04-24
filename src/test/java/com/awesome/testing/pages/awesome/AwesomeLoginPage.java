@@ -39,4 +39,8 @@ public class AwesomeLoginPage extends AbstractBasePage {
     public void verifyAlertFailureMessage(String alertMessage) {
         wait.until(driver -> driver.findElement(By.className("alert-danger")).getText().equals(alertMessage));
     }
+
+    public void verifyAlertSuccessMessage(String alertMessage) {
+        wait.until(driver -> driver.findElement(By.className("alert-success")).getText().equals(alertMessage));
+    }
 }
