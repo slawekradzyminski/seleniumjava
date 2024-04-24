@@ -1,12 +1,12 @@
 package com.awesome.testing.tests.ocado;
 
 import com.awesome.testing.pages.ocado.OcadoSearchResultPage;
-import com.awesome.testing.tests.SeleniumTest;
+import com.awesome.testing.tests.AbstractSeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
-public class AbstractOcadoTest extends SeleniumTest {
+public class AbstractOcadoTest extends AbstractSeleniumTest {
 
     protected OcadoSearchResultPage browsePage;
 
