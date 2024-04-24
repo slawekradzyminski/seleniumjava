@@ -1,13 +1,17 @@
 package com.awesome.testing.pages.awesome;
 
+import com.awesome.testing.components.AlertComponent;
 import com.awesome.testing.generators.UserDto;
 import com.awesome.testing.pages.AbstractBasePage;
-import org.openqa.selenium.By;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AwesomeRegisterPage extends AbstractBasePage {
+
+    @Getter
+    private AlertComponent alertComponent;
 
     @FindBy(css = "h2")
     private WebElement header;
@@ -32,6 +36,7 @@ public class AwesomeRegisterPage extends AbstractBasePage {
 
     public AwesomeRegisterPage(WebDriver driver) {
         super(driver);
+        alertComponent = new AlertComponent(driver);
     }
 
     public void assertHeader() {
@@ -49,7 +54,4 @@ public class AwesomeRegisterPage extends AbstractBasePage {
         return newInstanceOf(expectedPage);
     }
 
-    public void verifyAlertFailureMessage(String alertMessage) {
-        wait.until(driver -> driver.findElement(By.className("alert-danger")).getText().equals(alertMessage));
-    }
 }

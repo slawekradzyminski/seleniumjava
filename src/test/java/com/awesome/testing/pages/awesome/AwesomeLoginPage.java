@@ -1,12 +1,16 @@
 package com.awesome.testing.pages.awesome;
 
+import com.awesome.testing.components.AlertComponent;
 import com.awesome.testing.pages.AbstractBasePage;
-import org.openqa.selenium.By;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AwesomeLoginPage extends AbstractBasePage {
+
+    @Getter
+    private AlertComponent alertComponent;
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -22,6 +26,7 @@ public class AwesomeLoginPage extends AbstractBasePage {
 
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
+        alertComponent = new AlertComponent(driver);
     }
 
     public <T extends AbstractBasePage> T attemptLogin(String username, String password, Class<T> expectedPage) {
@@ -36,11 +41,5 @@ public class AwesomeLoginPage extends AbstractBasePage {
         return new AwesomeRegisterPage(driver);
     }
 
-    public void verifyAlertFailureMessage(String alertMessage) {
-        wait.until(driver -> driver.findElement(By.className("alert-danger")).getText().equals(alertMessage));
-    }
 
-    public void verifyAlertSuccessMessage(String alertMessage) {
-        wait.until(driver -> driver.findElement(By.className("alert-success")).getText().equals(alertMessage));
-    }
 }
