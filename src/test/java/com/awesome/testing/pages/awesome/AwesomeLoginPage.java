@@ -16,6 +16,9 @@ public class AwesomeLoginPage extends AbstractBasePage {
     @FindBy(className = "btn-primary")
     private WebElement loginButton;
 
+    @FindBy(className = "btn-link")
+    private WebElement registerButton;
+
     public AwesomeLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -25,5 +28,10 @@ public class AwesomeLoginPage extends AbstractBasePage {
         passwordField.sendKeys(password);
         loginButton.click();
         return new AwesomeHomePage(driver);
+    }
+
+    public AwesomeRegisterPage clickRegister() {
+        registerButton.click();
+        return new AwesomeRegisterPage(driver);
     }
 }

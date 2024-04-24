@@ -10,4 +10,10 @@ public class AwesomeLoginTest extends AbstractAwesomeTest {
                 .assertThatHeaderContains("Slawomir");
     }
 
+    @Test
+    public void shouldOpenRegisterPage() {
+        awesomeLoginPage.clickRegister()
+                .assertHeader();
+    }
+
 }
