@@ -7,7 +7,7 @@ public class LoginTest extends AbstractTestArenaTest {
     @Test
     public void shouldSuccessfullyLogin() {
         TALoginPage.attemptLogin(properties.getLogin(), properties.getPassword())
-                .openProjects()
+                .openMessages()
                 .waitForTextAreaToLoad();
     }
 

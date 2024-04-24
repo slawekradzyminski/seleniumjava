@@ -14,7 +14,7 @@ public class TAHomePage extends AbstractBasePage {
         super(driver);
     }
 
-    public TAMessagesPage openProjects() {
+    public TAMessagesPage openMessages() {
         messagesIcon.click();
         return new TAMessagesPage(driver);
     }

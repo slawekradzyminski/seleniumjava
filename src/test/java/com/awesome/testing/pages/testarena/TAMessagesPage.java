@@ -11,12 +11,25 @@ public class TAMessagesPage extends AbstractBasePage {
     @FindBy(id = "j_msgContent")
     private WebElement messageTextArea;
 
+    @FindBy(className = "j_msgResponse")
+    private WebElement responseButton;
+
     protected TAMessagesPage(WebDriver driver) {
         super(driver);
     }
 
-    public void waitForTextAreaToLoad() {
+    public TAMessagesPage waitForTextAreaToLoad() {
         wait.until(ExpectedConditions.elementToBeClickable(messageTextArea));
+        return this;
     }
 
+    public TAMessagesPage addMessage(String message) {
+        messageTextArea.sendKeys(message);
+        responseButton.click();
+        return this;
+    }
+
+    public void verifyLastMessageIs(String message) {
+
+    }
 }
