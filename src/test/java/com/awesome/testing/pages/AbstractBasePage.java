@@ -1,5 +1,6 @@
 package com.awesome.testing.pages;
 
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,11 @@ public abstract class AbstractBasePage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
+    }
+
+    @SneakyThrows
+    protected <T extends AbstractBasePage> T newInstanceOf(Class<T> expectedPage) {
+        return expectedPage.getDeclaredConstructor(WebDriver.class).newInstance(driver);
     }
 
 }
