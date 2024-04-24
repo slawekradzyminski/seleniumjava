@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 
+import java.util.function.Supplier;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
 public class UserGenerator {
@@ -16,12 +18,27 @@ public class UserGenerator {
                 .username(FAKER.internet().username())
                 .password(FAKER.internet().password())
                 .email(FAKER.internet().emailAddress())
-                .firstName(FAKER.name().firstName())
-                .lastName(FAKER.name().lastName())
+                .firstName(getValidTestData(() -> FAKER.name().firstName()))
+                .lastName(getValidTestData(() -> FAKER.name().lastName()))
                 .build();
 
         log.info("Test runs with user data {}", randomUser);
         return randomUser;
+    }
+
+    private static String getValidTestData(Supplier<String> function) {
+        String firstName = function.get();
+        int attempt = 1;
+        while (firstName.length() < 4 && attempt <= 20) {
+            firstName = function.get();
+            attempt++;
+            log.info("Failed to draw valid first name. Attempt {}", attempt);
+        }
+
+        if (firstName.length() < 4) {
+            throw new IllegalArgumentException("Failed to draw valid test data");
+        }
+        return firstName;
     }
 
 }
