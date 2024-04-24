@@ -1,10 +1,13 @@
 package com.awesome.testing.pages.testarena;
 
 import com.awesome.testing.pages.AbstractBasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class TAMessagesPage extends AbstractBasePage {
 
@@ -30,6 +33,7 @@ public class TAMessagesPage extends AbstractBasePage {
     }
 
     public void verifyLastMessageIs(String message) {
-
+        String lastElementXpath = "(//*[@class='message_content_text'])[last()]";
+        wait.until(driver -> driver.findElement(By.xpath(lastElementXpath)).getText().equals(message));
     }
 }
