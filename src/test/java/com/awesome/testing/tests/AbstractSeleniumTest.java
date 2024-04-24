@@ -19,7 +19,8 @@ public abstract class AbstractSeleniumTest {
     @BeforeAll
     static void setupDriver() {
         WebDriverManager.chromedriver().clearDriverCache().setup();
-        WebDriverManager.edgedriver().clearDriverCache().setup();
+//        WebDriverManager.firefoxdriver().clearDriverCache().setup();
+//        WebDriverManager.edgedriver().clearDriverCache().setup();
     }
 
     @BeforeEach

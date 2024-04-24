@@ -1,11 +1,11 @@
 package com.awesome.testing.pages.testarena;
 
-import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.AbstractBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TALoginPage extends BasePage {
+public class TALoginPage extends AbstractBasePage {
 
     @FindBy(id = "email")
     private WebElement emailField;

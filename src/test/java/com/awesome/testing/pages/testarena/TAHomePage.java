@@ -1,11 +1,11 @@
 package com.awesome.testing.pages.testarena;
 
-import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.AbstractBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TAHomePage extends BasePage {
+public class TAHomePage extends AbstractBasePage {
 
     @FindBy(className = "icon_mail")
     private WebElement messagesIcon;

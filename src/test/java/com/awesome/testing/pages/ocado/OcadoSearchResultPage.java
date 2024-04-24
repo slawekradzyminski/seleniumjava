@@ -1,12 +1,12 @@
 package com.awesome.testing.pages.ocado;
 
-import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.AbstractBasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 import static org.awaitility.Awaitility.await;
 
-public class OcadoSearchResultPage extends BasePage {
+public class OcadoSearchResultPage extends AbstractBasePage {
 
     @FindBy(id = "search")
     private WebElement searchInput;

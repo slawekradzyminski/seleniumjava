@@ -37,6 +37,10 @@ public class TestProperties {
         return getStringProperty("gridUrl");
     }
 
+    public String getUrl() {
+        return getStringProperty("url");
+    }
+
     public String getStringProperty(String propertyName) {
         return System.getProperty(propertyName, properties.getProperty(propertyName));
     }
