@@ -16,11 +16,12 @@ import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 public abstract class AbstractAwesomeLoggedInTest extends AbstractSeleniumTest {
 
     protected AwesomeHomePage awesomeHomePage;
+    protected UserDto user;
 
     @SneakyThrows
     @BeforeEach
     public void setUp() {
-        UserDto user = getRandomUser();
+        user = getRandomUser();
         RegisterApi.postSignUp(user);
         driver.get(properties.getUrl());
         LoginResponseDto loginResponseDto = LoginApi.signIn(user.getUsername(), user.getPassword());
