@@ -4,6 +4,7 @@ import com.awesome.testing.extensions.NameLoggerExtension;
 import com.awesome.testing.extensions.ScreenshotTakerExtension;
 import com.awesome.testing.listeners.TestExecutionListener;
 import com.awesome.testing.properties.TestProperties;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
@@ -43,11 +45,19 @@ public abstract class AbstractSeleniumTest {
 
     private WebDriver getDriver() {
         return switch (properties.getBrowser()) {
-            case "chrome" -> new ChromeDriver();
+            case "chrome" -> getChromeDriver();
             case "firefox" -> new FirefoxDriver();
             case "edge" -> new EdgeDriver();
             default -> throw new IllegalStateException("Unsupported browser: " + properties.getBrowser());
         };
+    }
+
+    private ChromeDriver getChromeDriver() {
+        ChromeOptions options = new ChromeOptions();
+        if (properties.isHeadless()) {
+            options.addArguments("--headless=new");
+        }
+        return new ChromeDriver(options);
     }
 
     @AfterEach
