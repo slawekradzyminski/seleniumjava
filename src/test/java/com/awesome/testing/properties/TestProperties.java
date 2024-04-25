@@ -45,6 +45,10 @@ public class TestProperties {
         return Boolean.parseBoolean(getStringProperty("headless"));
     }
 
+    public boolean useGrid() {
+        return Boolean.parseBoolean(getStringPropertyOrDefault("useGrid", "false"));
+    }
+
     public String getStringProperty(String propertyName) {
         return System.getProperty(propertyName, properties.getProperty(propertyName));
     }

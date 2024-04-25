@@ -5,6 +5,7 @@ import com.awesome.testing.dto.UserDto;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
 import com.awesome.testing.pages.awesome.AwesomeLoginPage;
 import com.awesome.testing.tests.AbstractSeleniumTest;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,6 +50,7 @@ public class AwesomeLoginTest extends AbstractSeleniumTest {
                 .verifyAlertFailureMessage("Invalid username/password supplied");
     }
 
+    @SneakyThrows
     @Test
     public void shouldOpenRegisterPage() {
         awesomeLoginPage.clickRegister()
