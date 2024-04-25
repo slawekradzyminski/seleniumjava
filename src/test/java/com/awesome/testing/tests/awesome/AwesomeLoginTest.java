@@ -53,6 +53,8 @@ public class AwesomeLoginTest extends AbstractSeleniumTest {
     public void shouldOpenRegisterPage() {
         awesomeLoginPage.clickRegister()
                 .assertHeader();
+
+        assert 2 == 3;
     }
 
 }

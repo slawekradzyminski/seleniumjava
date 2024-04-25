@@ -1,6 +1,7 @@
 package com.awesome.testing.tests;
 
 import com.awesome.testing.extensions.NameLoggerExtension;
+import com.awesome.testing.extensions.ScreenshotTakerExtension;
 import com.awesome.testing.listeners.TestExecutionListener;
 import com.awesome.testing.properties.TestProperties;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +16,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
-@ExtendWith(NameLoggerExtension.class)
+@ExtendWith({NameLoggerExtension.class, ScreenshotTakerExtension.class})
 public abstract class AbstractSeleniumTest {
 
     protected WebDriver driver;
@@ -37,6 +38,7 @@ public abstract class AbstractSeleniumTest {
         WebDriver original = getDriver();
         TestExecutionListener listener = new TestExecutionListener();
         driver = new EventFiringDecorator<>(listener).decorate(original);
+        ScreenshotTakerExtension.setDriver(driver);
     }
 
     private WebDriver getDriver() {
