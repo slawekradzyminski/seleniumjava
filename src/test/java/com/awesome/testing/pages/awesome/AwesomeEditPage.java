@@ -42,7 +42,7 @@ public class AwesomeEditPage extends AbstractBasePage {
         assertThat(rolesField.getAttribute("value")).isEqualTo(rolesToString(user.getRoles()));
     }
 
-    public String rolesToString(Roles[] roles) {
+    private String rolesToString(Roles[] roles) {
         return Arrays.stream(roles)
                 .map(Roles::name)
                 .collect(Collectors.joining(","));
