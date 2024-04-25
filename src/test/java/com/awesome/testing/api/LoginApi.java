@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LoginApi extends AbstractApi {
 
     @SneakyThrows
-    public LoginResponseDto signIn(String username, String password) {
+    public static LoginResponseDto signIn(String username, String password) {
         Request request = new Request.Builder()
                 .url(BASE_URL + "/users/signin")
                 .post(getRequestBody(getLoginRequestDto(username, password)))
@@ -26,7 +26,7 @@ public class LoginApi extends AbstractApi {
         }
     }
 
-    private LoginRequestDto getLoginRequestDto(String username, String password) {
+    private static LoginRequestDto getLoginRequestDto(String username, String password) {
         return LoginRequestDto.builder()
                 .username(username)
                 .password(password)

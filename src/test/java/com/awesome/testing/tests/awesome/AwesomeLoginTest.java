@@ -15,7 +15,6 @@ import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 public class AwesomeLoginTest extends AbstractSeleniumTest {
 
     private AwesomeLoginPage awesomeLoginPage;
-    private final RegisterApi registerApi = new RegisterApi();
 
     @BeforeEach
     public void navigate() {
@@ -34,7 +33,7 @@ public class AwesomeLoginTest extends AbstractSeleniumTest {
     public void shouldSuccessfullyLoginToNewlyRegisteredUser() {
         // given
         UserDto user = getRandomUser();
-        registerApi.postSignUp(user);
+        RegisterApi.postSignUp(user);
 
         // when
         var awesomeHomePage = awesomeLoginPage.attemptLogin(user.getUsername(), user.getPassword(), AwesomeHomePage.class);

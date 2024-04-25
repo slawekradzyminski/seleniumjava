@@ -10,24 +10,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.html5.WebStorage;
+import org.openqa.selenium.JavascriptExecutor;
 
 import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 
 public class AwesomeHomeTest extends AbstractSeleniumTest {
 
     private AwesomeHomePage awesomeHomePage;
-    private final RegisterApi registerApi = new RegisterApi();
-    private final LoginApi loginApi = new LoginApi();
 
     @SneakyThrows
     @BeforeEach
     public void setUp() {
         UserDto user = getRandomUser();
-        registerApi.postSignUp(user);
+        RegisterApi.postSignUp(user);
         driver.get(properties.getUrl());
-        LoginResponseDto loginResponseDto = loginApi.signIn(user.getUsername(), user.getPassword());
-        ((WebStorage) driver).getLocalStorage().setItem("user", new ObjectMapper().writeValueAsString(loginResponseDto));
+        LoginResponseDto loginResponseDto = LoginApi.signIn(user.getUsername(), user.getPassword());
+        ((JavascriptExecutor)driver).executeScript(String.format("window.localStorage.setItem('%s','%s')",
+                "user", new ObjectMapper().writeValueAsString(loginResponseDto)));
         driver.get(properties.getUrl());
         awesomeHomePage = new AwesomeHomePage(driver);
     }

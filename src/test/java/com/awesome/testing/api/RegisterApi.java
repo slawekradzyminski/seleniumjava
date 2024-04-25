@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RegisterApi extends AbstractApi {
 
     @SneakyThrows
-    public void postSignUp(UserDto user) {
+    public static void postSignUp(UserDto user) {
         Request request = new Request.Builder()
                 .url(BASE_URL + "/users/signup")
                 .post(getRequestBody(user))
