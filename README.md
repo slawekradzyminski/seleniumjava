@@ -24,8 +24,8 @@ Single file generation requires version 2.24.1.
 
 ```commandline
 ./mvnw clean test
-./mvnw allure:serve
-allure generate --single-file --clean target/allure-results
+.allure/allure-2.28.0/bin/allure serve
+.allure/allure-2.28.0/bin/allure generate --single-file --clean target/allure-results
 ```
 
 
