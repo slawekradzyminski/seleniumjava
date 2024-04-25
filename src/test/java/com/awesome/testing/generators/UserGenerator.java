@@ -1,5 +1,7 @@
 package com.awesome.testing.generators;
 
+import com.awesome.testing.dto.Roles;
+import com.awesome.testing.dto.UserDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ public class UserGenerator {
                 .email(FAKER.internet().emailAddress())
                 .firstName(getValidTestData(() -> FAKER.name().firstName()))
                 .lastName(getValidTestData(() -> FAKER.name().lastName()))
+                .roles(new Roles[]{Roles.ROLE_ADMIN, Roles.ROLE_CLIENT})
                 .build();
 
         log.info("Test runs with user data {}", randomUser);

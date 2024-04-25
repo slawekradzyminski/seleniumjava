@@ -1,7 +1,7 @@
 package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.components.AlertComponent;
-import com.awesome.testing.generators.UserDto;
+import com.awesome.testing.dto.UserDto;
 import com.awesome.testing.pages.AbstractBasePage;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;

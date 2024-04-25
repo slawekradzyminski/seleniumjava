@@ -1,4 +1,4 @@
-package com.awesome.testing.generators;
+package com.awesome.testing.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,5 +12,6 @@ public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
+    private Roles[] roles;
 
 }
