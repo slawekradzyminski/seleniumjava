@@ -9,4 +9,10 @@ public class AwesomeHomeTest extends AbstractAwesomeLoggedInTest {
         awesomeHomePage.assertThatAtLeastOneUserIsDisplayed();
     }
 
+    @Test
+    public void shouldDeleteThirdUser() {
+        awesomeHomePage.assertThatAtLeastOneUserIsDisplayed()
+                .deleteThirdUser();
+    }
+
 }
