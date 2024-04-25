@@ -1,11 +1,13 @@
 package com.awesome.testing.api;
 
+import com.awesome.testing.dto.LoginResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 @Slf4j
 public abstract class AbstractApi {
@@ -17,6 +19,12 @@ public abstract class AbstractApi {
 
     protected RequestBody getRequestBody(Object object) {
         return RequestBody.create(getJsonBody(object), JSON);
+    }
+
+    @SneakyThrows
+    @SuppressWarnings("all")
+    protected <T> T toDto(Response response, Class<T> expectedDto) {
+        return OBJECT_MAPPER.readValue(response.body().string(), expectedDto);
     }
 
     @SneakyThrows
