@@ -1,6 +1,5 @@
 package com.awesome.testing.api;
 
-import com.awesome.testing.dto.LoginResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

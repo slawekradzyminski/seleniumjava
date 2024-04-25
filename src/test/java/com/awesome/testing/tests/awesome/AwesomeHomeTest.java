@@ -1,6 +1,8 @@
 package com.awesome.testing.tests.awesome;
 
+import com.awesome.testing.api.LoginApi;
 import com.awesome.testing.api.RegisterApi;
+import com.awesome.testing.dto.LoginResponseDto;
 import com.awesome.testing.dto.UserDto;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
 import com.awesome.testing.tests.AbstractSeleniumTest;
@@ -13,6 +15,7 @@ public class AwesomeHomeTest extends AbstractSeleniumTest {
 
     private AwesomeHomePage awesomeHomePage;
     private final RegisterApi registerApi = new RegisterApi();
+    private final LoginApi loginApi = new LoginApi();
 
     @BeforeEach
     public void setUp() {
@@ -20,6 +23,7 @@ public class AwesomeHomeTest extends AbstractSeleniumTest {
         registerApi.postSignUp(user);
         driver.get(properties.getUrl());
         // 1. wysłac POSTa na /users/signin
+        LoginResponseDto loginResponseDto = loginApi.signIn(user.getUsername(), user.getPassword());
 
         // 2. odpowiedź ustawić w localStorage pod kluczem user
 
