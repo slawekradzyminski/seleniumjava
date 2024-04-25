@@ -30,5 +30,9 @@ Go to UI [http://localhost:4444](http://localhost:4444)
 
 Query status [http://localhost:4444/status](http://localhost:4444/status)
 
+### Allure
 
+Installed [Allure](https://allurereport.org/docs/gettingstarted-installation/) is required to generate a report.
+
+At least version 2.24.1 is required to generate single HTML report.
 
