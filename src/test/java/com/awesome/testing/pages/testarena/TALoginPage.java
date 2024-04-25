@@ -1,6 +1,7 @@
 package com.awesome.testing.pages.testarena;
 
 import com.awesome.testing.pages.AbstractBasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class TALoginPage extends AbstractBasePage {
         super(driver);
     }
 
+    @Step("Login to Test Arena")
     public TAHomePage attemptLogin(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
