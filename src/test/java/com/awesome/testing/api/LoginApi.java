@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class LoginApi extends AbstractApi {
 
-    @SuppressWarnings("all")
     @SneakyThrows
     public LoginResponseDto signIn(String username, String password) {
         Request request = new Request.Builder()
