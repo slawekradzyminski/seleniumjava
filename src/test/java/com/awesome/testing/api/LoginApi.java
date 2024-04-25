@@ -3,13 +3,11 @@ package com.awesome.testing.api;
 import com.awesome.testing.dto.LoginRequestDto;
 import com.awesome.testing.dto.LoginResponseDto;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class LoginApi extends AbstractApi {
 
     @SneakyThrows
@@ -20,7 +18,6 @@ public class LoginApi extends AbstractApi {
                 .build();
 
         try (Response response = OK_HTTP_CLIENT.newCall(request).execute()) {
-            log.info("Received response {}", response);
             assertThat(response.code()).isEqualTo(200);
             return toDto(response, LoginResponseDto.class);
         }

@@ -6,12 +6,12 @@ import com.awesome.testing.dto.LoginResponseDto;
 import com.awesome.testing.dto.UserDto;
 import com.awesome.testing.pages.awesome.AwesomeHomePage;
 import com.awesome.testing.tests.AbstractSeleniumTest;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 
+import static com.awesome.testing.config.ObjectMapperProvider.OBJECT_MAPPER;
 import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 
 public class AwesomeHomeTest extends AbstractSeleniumTest {
@@ -25,8 +25,8 @@ public class AwesomeHomeTest extends AbstractSeleniumTest {
         RegisterApi.postSignUp(user);
         driver.get(properties.getUrl());
         LoginResponseDto loginResponseDto = LoginApi.signIn(user.getUsername(), user.getPassword());
-        ((JavascriptExecutor)driver).executeScript(String.format("window.localStorage.setItem('%s','%s')",
-                "user", new ObjectMapper().writeValueAsString(loginResponseDto)));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.setItem('%s','%s')",
+                "user", OBJECT_MAPPER.writeValueAsString(loginResponseDto)));
         driver.get(properties.getUrl());
         awesomeHomePage = new AwesomeHomePage(driver);
     }
