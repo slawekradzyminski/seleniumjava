@@ -18,16 +18,13 @@ public class RegisterApi {
 
     @SneakyThrows
     public void postSignUp(UserDto user) {
-        // tutaj robimy body requestu
-        RequestBody body = RequestBody.create(JSON, getJsonBody(user));
+        RequestBody body = RequestBody.create(getJsonBody(user), JSON);
 
-        // tutaj budujemy całe zapytanie HTTP
         Request request = new Request.Builder()
                 .url(BASE_URL + "/users/signup")
                 .post(body)
                 .build();
 
-        // tutaj wysyłamy request
         try (Response response = OK_HTTP_CLIENT.newCall(request).execute()) {
             log.info("Received response {}", response);
             assertThat(response.code()).isEqualTo(201);

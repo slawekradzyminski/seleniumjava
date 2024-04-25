@@ -32,11 +32,15 @@ public class AwesomeLoginTest extends AbstractSeleniumTest {
 
     @Test
     public void shouldSuccessfullyLoginToNewlyRegisteredUser() {
+        // given
         UserDto user = getRandomUser();
         registerApi.postSignUp(user);
 
-        awesomeLoginPage.attemptLogin(user.getUsername(), user.getPassword(), AwesomeHomePage.class)
-                .assertThatHeaderContains(user.getFirstName());
+        // when
+        var awesomeHomePage = awesomeLoginPage.attemptLogin(user.getUsername(), user.getPassword(), AwesomeHomePage.class);
+
+        // then
+        awesomeHomePage.assertThatHeaderContains(user.getFirstName());
     }
 
     @Test
