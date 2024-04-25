@@ -3,7 +3,6 @@ package com.awesome.testing.pages.awesome;
 import com.awesome.testing.dto.UserDto;
 import com.awesome.testing.exceptions.CouldNotFindUserException;
 import com.awesome.testing.pages.AbstractBasePage;
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,8 +23,9 @@ public class AwesomeHomePage extends AbstractBasePage {
         wait.until((driver) -> header.getText().contains(text));
     }
 
-    public void assertThatAtLeastOneUserIsDisplayed() {
+    public AwesomeHomePage assertThatAtLeastOneUserIsDisplayed() {
         wait.until(driver -> !driver.findElements(By.cssSelector("li")).isEmpty());
+        return this;
     }
 
     public AwesomeEditPage clickEditOn(UserDto user) {

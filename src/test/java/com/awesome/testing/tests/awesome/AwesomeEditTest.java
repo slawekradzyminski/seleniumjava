@@ -6,7 +6,9 @@ public class AwesomeEditTest extends AbstractAwesomeLoggedInTest {
 
     @Test
     public void shouldAutoFillCorrectData() {
-        awesomeHomePage.clickEditOn(user)
+        awesomeHomePage
+                .assertThatAtLeastOneUserIsDisplayed()
+                .clickEditOn(user)
                 .verifyUserDataCorrectlyDisplayed(user);
     }
 
