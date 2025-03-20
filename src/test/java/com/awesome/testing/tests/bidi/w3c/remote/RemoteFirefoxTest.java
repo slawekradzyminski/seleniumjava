@@ -6,17 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public abstract class RemoteFirefoxTest {
 
     protected WebDriver driver;
 
     @BeforeEach
-    void setupDriver() throws MalformedURLException {
+    void setupDriver() {
         driver = RemoteWebDriver.builder()
-                .address(new URL("http://localhost:4444/"))
+                .address("http://localhost:4444/")
                 .addAlternative(getOptions())
                 .build();
     }

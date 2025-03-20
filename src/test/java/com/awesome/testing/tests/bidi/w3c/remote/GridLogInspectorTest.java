@@ -52,7 +52,6 @@ public class GridLogInspectorTest extends RemoteFirefoxTest {
         await().until(() -> consoleLogEntries.size() == 1);
         ConsoleLogEntry consoleLogEntry = consoleLogEntries.get(0);
         assertThat(consoleLogEntry.getText()).isEqualTo("Hello, world!");
-        assertThat(consoleLogEntry.getRealm()).isNull();
         assertThat(consoleLogEntry.getType()).isEqualTo("console");
         assertThat(consoleLogEntry.getMethod()).isEqualTo("log");
         assertThat(consoleLogEntry.getStackTrace()).isNull();

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public abstract class RemoteTest {
@@ -14,10 +16,10 @@ public abstract class RemoteTest {
     protected WebDriver driver;
 
     @BeforeEach
-    void setupDriver() throws MalformedURLException {
-        URL gridUrl = new URL("http://localhost:4444/");
+    void setupDriver() throws MalformedURLException, URISyntaxException {
+        URI gridUri = new URI("http://localhost:4444/");
         ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(gridUrl, options);
+        driver = new RemoteWebDriver(gridUri.toURL(), options);
     }
 
     @AfterEach
