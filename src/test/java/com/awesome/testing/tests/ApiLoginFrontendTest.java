@@ -18,7 +18,7 @@ public class ApiLoginFrontendTest extends SeleniumTest {
         driver.navigate().to(ConfigProvider.get("frontend.url"));
 
         // then
-        new HomePage(driver).verifyEmail("awesome@testing.com");
+        new HomePage(driver).verifyEmail("awesome@testing.co");
     }
     
 } 
