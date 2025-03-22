@@ -1,5 +1,6 @@
 .idea
 target
 .allure
-allure-report
 .DS_Store
+allure-results
+allure-report

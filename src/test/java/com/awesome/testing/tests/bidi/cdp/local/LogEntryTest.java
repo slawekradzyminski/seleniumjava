@@ -4,8 +4,8 @@ import com.awesome.testing.tests.bidi.BidiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v133.log.Log;
-import org.openqa.selenium.devtools.v133.log.model.LogEntry;
+import org.openqa.selenium.devtools.v134.log.Log;
+import org.openqa.selenium.devtools.v134.log.model.LogEntry;
 
 import java.util.ArrayList;
 import java.util.List;
