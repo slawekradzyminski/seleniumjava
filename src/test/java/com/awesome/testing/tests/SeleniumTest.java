@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
 @ExtendWith({ScreenshotTakerExtension.class, NameLoggerExtension.class})
@@ -18,7 +19,9 @@ public abstract class SeleniumTest {
 
     @BeforeEach
     public void setUpDriver() {
-        WebDriver original = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        WebDriver original = new ChromeDriver(options);
         TestExecutionListener listener = new TestExecutionListener();
         driver = new EventFiringDecorator<>(listener).decorate(original);
         ScreenshotTakerExtension.setDriver(driver);
