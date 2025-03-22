@@ -5,7 +5,8 @@
 [![Maven](https://img.shields.io/badge/Maven-3.9+-orange)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-This repository showcases WebDriver BiDi (Bidirectional Protocol) functionalities in Selenium 4. The BiDi protocol enables powerful browser automation features like:
+This repository showcases WebDriver BiDi (Bidirectional Protocol) functionalities in Selenium 4. The BiDi protocol
+enables powerful browser automation features like:
 
 - Real-time console log access
 - Network traffic monitoring and interception
@@ -16,6 +17,7 @@ This repository showcases WebDriver BiDi (Bidirectional Protocol) functionalitie
 ## 📖 Detailed Documentation
 
 For a comprehensive guide on Selenium BiDi, check out:
+
 - [Selenium BiDi Official Documentation](https://www.selenium.dev/documentation/webdriver/bidirectional/)
 - [Detailed Blog Post on Awesome Testing](https://www.awesome-testing.com/2023/04/exploring-selenium-bidi-functionality.html)
 
@@ -34,7 +36,8 @@ For a comprehensive guide on Selenium BiDi, check out:
 
 ## 🏗️ Running Selenium Grid
 
-You need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) first.
+You need to install [Docker](https://docs.docker.com/get-docker/)
+and [Docker Compose](https://docs.docker.com/compose/install/) first.
 
 Then run:
 
@@ -86,11 +89,12 @@ allure generate target/allure-results -o target/allure-report --single-file
 ## 🧩 Project Structure
 
 - `src/test/java/com/awesome/testing/tests/bidi/` - BiDi test examples
-  - `w3c/` - W3C WebDriver BiDi protocol tests
-  - `cdp/` - Chrome DevTools Protocol integration tests
-  - Each folder contains both local and remote test examples
+    - `w3c/` - W3C WebDriver BiDi protocol tests
+    - `cdp/` - Chrome DevTools Protocol integration tests
+    - Each folder contains both local and remote test examples
 - `src/test/java/com/awesome/testing/httpclient/` - HTTP client for API authentication
-- `src/test/java/com/awesome/testing/tests/ApiLoginFrontendTest.java` - Example of API authentication with frontend access
+- `src/test/java/com/awesome/testing/tests/ApiLoginFrontendTest.java` - Example of API authentication with frontend
+  access
 
 ## 🔑 API Authentication
 
@@ -102,6 +106,7 @@ The project includes examples of how to:
 4. Access protected frontend routes without manual login
 
 This approach allows you to:
+
 - Bypass frontend login forms for faster test execution
 - Test protected routes directly
 - Combine API and UI testing in a single flow
@@ -121,6 +126,31 @@ String jwtToken = authClient.loginAsAdmin();
 // Now navigate to protected routes
 driver.navigate().refresh();
 ```
+
+## 🔧 Overriding Configuration in CI
+
+By default, this project reads its configuration (e.g., application URLs, credentials) from a `config.properties` file
+or default values. You can override these settings when running in CI (or locally) by passing in system properties or
+environment variables.
+
+For instance, if you need to set credentials or environment URLs in your pipeline:
+
+### System properties approach:
+
+```bash
+mvn test -Dadmin.username=actualUser -Dadmin.password=secretPass
+```
+
+### Environment variables approach:
+
+```bash
+export ADMIN_USERNAME=actualUser
+export ADMIN_PASSWORD=secretPass
+mvn test
+```
+
+This method allows your CI pipelines to avoid committing real secrets in version control, since the credentials can be
+injected securely at runtime.
 
 ## 📝 License
 

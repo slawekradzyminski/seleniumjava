@@ -1,5 +1,6 @@
 package com.awesome.testing.http;
 
+import com.awesome.testing.config.ConfigProvider;
 import com.awesome.testing.http.dto.LoginRequestDto;
 import com.awesome.testing.http.dto.LoginResponseDto;
 import com.awesome.testing.http.factory.LoginRequestFactory;
@@ -17,7 +18,9 @@ public class LoginClient extends AbstractHttpClient {
 
     @SneakyThrows
     public static String loginAsAdmin() {
-        LoginRequestDto loginRequestDto = LoginRequestFactory.loginRequest("admin", "admin");
+        String username = ConfigProvider.get("admin.username");
+        String password = ConfigProvider.get("admin.password");
+        LoginRequestDto loginRequestDto = LoginRequestFactory.loginRequest(username, password);
         String jsonBody = getObjectMapper().writeValueAsString(loginRequestDto);
         RequestBody requestBody = RequestBody.create(jsonBody, JSON_MEDIA_TYPE);
 
