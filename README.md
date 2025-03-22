@@ -89,6 +89,38 @@ allure generate target/allure-results -o target/allure-report --single-file
   - `w3c/` - W3C WebDriver BiDi protocol tests
   - `cdp/` - Chrome DevTools Protocol integration tests
   - Each folder contains both local and remote test examples
+- `src/test/java/com/awesome/testing/httpclient/` - HTTP client for API authentication
+- `src/test/java/com/awesome/testing/tests/ApiLoginFrontendTest.java` - Example of API authentication with frontend access
+
+## 🔑 API Authentication
+
+The project includes examples of how to:
+
+1. Make HTTP requests to an authentication endpoint using OkHttp
+2. Extract a JWT token from the response
+3. Set the token in the browser (localStorage or cookies)
+4. Access protected frontend routes without manual login
+
+This approach allows you to:
+- Bypass frontend login forms for faster test execution
+- Test protected routes directly
+- Combine API and UI testing in a single flow
+
+Example:
+
+```java
+// Get JWT token from API
+ApiAuthClient authClient = new ApiAuthClient();
+String jwtToken = authClient.loginAsAdmin();
+
+// Set token in browser's localStorage
+((JavascriptExecutor) driver).executeScript(
+        "window.localStorage.setItem('token', arguments[0]);", jwtToken
+);
+
+// Now navigate to protected routes
+driver.navigate().refresh();
+```
 
 ## 📝 License
 
