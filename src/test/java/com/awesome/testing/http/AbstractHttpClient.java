@@ -1,19 +1,19 @@
 package com.awesome.testing.http;
 
 import com.awesome.testing.config.ConfigProvider;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.awesome.testing.http.interceptor.OkHttpLoggingInterceptor;
 import okhttp3.*;
 
 public class AbstractHttpClient {
 
     protected static final String BASE_URL = ConfigProvider.get("backend.url");
     protected static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
-    protected static final OkHttpClient CLIENT = new OkHttpClient();
+    protected static final OkHttpClient CLIENT = buildOkHttpClient();
 
-    protected static ObjectMapper getObjectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return objectMapper;
+    protected static OkHttpClient buildOkHttpClient() {
+        return new OkHttpClient.Builder()
+                .addInterceptor(new OkHttpLoggingInterceptor())
+                .build();
     }
+
 }

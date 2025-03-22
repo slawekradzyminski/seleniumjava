@@ -11,6 +11,8 @@ import okhttp3.*;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.awesome.testing.http.ObjectMapperProvider.getObjectMapper;
+
 @UtilityClass
 public class LoginClient extends AbstractHttpClient {
 
