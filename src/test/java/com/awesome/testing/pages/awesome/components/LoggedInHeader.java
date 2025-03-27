@@ -1,6 +1,7 @@
 package com.awesome.testing.pages.awesome.components;
 
 import com.awesome.testing.pages.BasePage;
+import com.awesome.testing.pages.awesome.LoginPage;
 import com.awesome.testing.pages.awesome.ProfilePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,4 +19,11 @@ public class LoggedInHeader extends BasePage {
         driver.findElement(By.linkText(name)).click();
         return new ProfilePage(driver);
     }
+
+    public LoginPage clickLogout() {
+        wait.until(driver -> driver.findElements(By.cssSelector("nav button")).size() == 2);
+        driver.findElements(By.cssSelector("nav button")).getFirst().click();
+        return new LoginPage(driver);
+    }
+
 }
