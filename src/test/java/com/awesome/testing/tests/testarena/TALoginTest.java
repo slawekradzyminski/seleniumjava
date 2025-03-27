@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class LoginTest extends AbstractTestArenaTest {
+public class TALoginTest extends AbstractTestArenaTest {
 
     @Test
     public void shouldSuccessfullyLogin() {
