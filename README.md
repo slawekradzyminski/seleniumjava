@@ -32,6 +32,20 @@ For a comprehensive guide on Selenium BiDi, check out:
 1. Clone this repository
 2. Build the project: `mvn clean install`
 
+###
+
+Overriding config on powershell
+```bash
+.\mvnw test -Dtest=LoginTest `
+    "-Dcredentials.username=administrator@testarena.pl" `
+    "-Dcredentials.password=sumXQQ72`$L"
+```
+
+Overriding config on bash
+```bash
+./mvnw test -Dtest=LoginTest -Dcredentials.username='administrator@testarena.pl' -Dcredentials.password='sumXQQ72$L'
+```
+
 ## 🏗️ Running Selenium Grid
 
 You need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) first.
@@ -57,6 +71,11 @@ docker compose up
 
 ```bash
 mvn test -Dtest=*local*
+```
+
+Example:
+```bash
+./mvnw test -Dtest=LoginTest
 ```
 
 ### Remote Tests (Selenium Grid)
