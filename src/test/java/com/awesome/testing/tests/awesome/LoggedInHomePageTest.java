@@ -4,6 +4,7 @@ import com.awesome.testing.config.ConfigProvider;
 import com.awesome.testing.http.LoginApi;
 import com.awesome.testing.http.RegisterApi;
 import com.awesome.testing.http.dto.RegisterRequestDto;
+import com.awesome.testing.pages.awesome.LoggedInHomePage;
 import com.awesome.testing.tests.SeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,10 +14,11 @@ import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 public class LoggedInHomePageTest extends SeleniumTest {
 
     String token;
+    RegisterRequestDto user;
 
     @BeforeEach
     public void setUp() {
-        RegisterRequestDto user = getRandomUser();
+        user = getRandomUser();
         RegisterApi.register(user);
         token = LoginApi.login(user.getUsername(), user.getPassword());
 
@@ -26,8 +28,15 @@ public class LoggedInHomePageTest extends SeleniumTest {
     }
 
     @Test
-    public void shouldXXX() {
+    public void shouldLogOutSuccessfully() {
         driver.quit();
     }
 
+    @Test
+    public void shouldOpenProfilePage() {
+        new LoggedInHomePage(driver)
+                .getLoggedInHeader()
+                .clickOnName(user.getFirstName(), user.getLastName())
+                .verifyPersonalInformation(user);
+    }
 }
