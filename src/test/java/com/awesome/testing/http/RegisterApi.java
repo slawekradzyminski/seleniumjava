@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import okhttp3.*;
 
+import static com.awesome.testing.http.ObjectMapperProvider.getObjectMapper;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @UtilityClass
@@ -14,14 +15,14 @@ public class RegisterApi extends BaseApi {
 
     @SneakyThrows
     public static void register(RegisterRequestDto user) {
-        String body = OBJECT_MAPPER.writeValueAsString(user);
+        String body = getObjectMapper().writeValueAsString(user);
 
         Request request = new Request.Builder()
                 .url(SIGNUP_URL)
                 .post(RequestBody.create(body, JSON_MEDIA_TYPE))
                 .build();
 
-        try (Response response = CLIENT.newCall(request).execute()) {
+        try (Response response = getClient().newCall(request).execute()) {
             assertThat(response.code()).isEqualTo(201);
         }
     }
