@@ -6,6 +6,7 @@ import com.awesome.testing.http.RegisterApi;
 import com.awesome.testing.http.dto.RegisterRequestDto;
 import com.awesome.testing.tests.SeleniumTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.JavascriptExecutor;
 
 import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 
@@ -21,7 +22,7 @@ public abstract class LoggedInSeleniumTest extends SeleniumTest {
         token = LoginApi.login(user.getUsername(), user.getPassword());
 
         driver.get(ConfigProvider.get("frontend.url"));
-        driver.executeScript("window.localStorage.setItem('token', arguments[0]);", token);
+        ((JavascriptExecutor) driver).executeScript("window.localStorage.setItem('token', arguments[0]);", token);
     }
 
 }
