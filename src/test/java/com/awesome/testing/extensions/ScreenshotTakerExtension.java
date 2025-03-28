@@ -3,6 +3,7 @@ package com.awesome.testing.extensions;
 import io.qameta.allure.Allure;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.OutputType;
@@ -18,6 +19,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Order(1)
 @Slf4j
 public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
 

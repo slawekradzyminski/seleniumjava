@@ -5,10 +5,12 @@ import com.awesome.testing.http.dto.RegisterRequestDto;
 import com.awesome.testing.pages.awesome.LoggedInHomePage;
 import com.awesome.testing.pages.awesome.LoginPage;
 import com.awesome.testing.tests.SeleniumTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import static com.awesome.testing.generators.UserGenerator.getRandomUser;
 
+@Slf4j
 public class LoginTest extends SeleniumTest {
 
     @Test
@@ -26,6 +28,8 @@ public class LoginTest extends SeleniumTest {
 
     @Test
     public void shouldShowAlertOfInvalidCredentials() {
+        log.info("Using wrong credentials, expecting failed login");
+
         new LoginPage(driver)
                 .openPage()
                 .attemptLogin("wrong", "wrong", LoginPage.class)
