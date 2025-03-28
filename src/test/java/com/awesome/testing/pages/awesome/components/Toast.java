@@ -23,4 +23,9 @@ public class Toast extends BasePage {
         wait.until(ExpectedConditions.textToBe(TYPE, "Success"));
         wait.until(ExpectedConditions.textToBe(DESCRIPTION, successMessage));
     }
+
+    public void verifyMessage(String title, String message) {
+        wait.until(ExpectedConditions.textToBe(TYPE, title));
+        wait.until(ExpectedConditions.textToBe(DESCRIPTION, message));
+    }
 }
