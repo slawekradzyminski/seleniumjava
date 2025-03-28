@@ -1,7 +1,6 @@
 package com.awesome.testing.tests;
 
 import com.awesome.testing.config.ConfigProvider;
-import com.awesome.testing.extensions.AllureLoggingExtension;
 import com.awesome.testing.extensions.NameLoggingExtension;
 import com.awesome.testing.extensions.ScreenshotTakerExtension;
 import com.awesome.testing.listeners.TestExecutionListener;
@@ -10,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -17,8 +18,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
 
+@Execution(ExecutionMode.CONCURRENT)
 @Slf4j
-@ExtendWith({NameLoggingExtension.class, ScreenshotTakerExtension.class, AllureLoggingExtension.class})
+@ExtendWith({NameLoggingExtension.class, ScreenshotTakerExtension.class})
 public abstract class SeleniumTest {
 
     protected WebDriver driver;
