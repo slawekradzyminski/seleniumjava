@@ -26,4 +26,9 @@ public class LoggedInHeader extends BasePage {
         return new LoginPage(driver);
     }
 
+    public <T extends BasePage> T clickOnLink(String link, Class<T> expectedPage) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText(link)));
+        driver.findElement(By.linkText(link)).click();
+        return getInstance(expectedPage);
+    }
 }
