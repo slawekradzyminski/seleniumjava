@@ -1,5 +1,6 @@
 package com.awesome.testing.extensions;
 
+import io.qameta.allure.Allure;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
@@ -8,6 +9,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,9 +33,12 @@ public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
             try {
                 Path screenshotDir = Paths.get(SCREENSHOT_DIR);
                 ensureTheScreenshotDirectoryExists(screenshotDir);
+
                 String filename = getFilename(context);
                 Path destinationPath = screenshotDir.resolve(filename);
-                takeScreenshotAndSaveToFile(destinationPath);
+
+                byte[] screenshotBytes = takeScreenshotAndSaveToFile(destinationPath);
+                attachScreenshotToAllureReport(screenshotBytes, filename);
             } catch (IOException e) {
                 log.error("Failed to save screenshot", e);
             } catch (Exception e) {
@@ -42,10 +47,16 @@ public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
         }
     }
 
-    private void takeScreenshotAndSaveToFile(Path destinationPath) throws IOException {
+    private byte[] takeScreenshotAndSaveToFile(Path destinationPath) throws IOException {
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        byte[] screenshotBytes = Files.readAllBytes(screenshotFile.toPath());
         Files.copy(screenshotFile.toPath(), destinationPath);
         log.info("Screenshot saved to: {}", destinationPath.toAbsolutePath());
+        return screenshotBytes;
+    }
+
+    private void attachScreenshotToAllureReport(byte[] screenshotBytes, String name) {
+        Allure.addAttachment("Screenshot: " + name, "image/png", new ByteArrayInputStream(screenshotBytes), ".png");
     }
 
     private String getFilename(ExtensionContext context) {
@@ -60,5 +71,4 @@ public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
             Files.createDirectories(screenshotDir);
         }
     }
-
 }

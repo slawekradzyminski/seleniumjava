@@ -1,6 +1,7 @@
 package com.awesome.testing.pages.awesome;
 
 import com.awesome.testing.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,6 +22,7 @@ public class QrPage extends BasePage {
                 .until(() -> driver.getPageSource().contains("QR Code Generator"));
     }
 
+    @Step("Generate QR code")
     public QrPage generateQr(String text) {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("qr-text")));
         driver.findElement(By.id("qr-text")).sendKeys(text);
@@ -33,6 +35,7 @@ public class QrPage extends BasePage {
         return this;
     }
 
+    @Step("Clear QR code")
     public QrPage clearQrCode() {
         driver.findElement(By.xpath("//button[text()='Clear']")).click();
         return this;

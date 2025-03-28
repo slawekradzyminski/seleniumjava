@@ -30,7 +30,7 @@ public class LoginTest extends SeleniumTest {
                 .openPage()
                 .attemptLogin("wrong", "wrong", LoginPage.class)
                 .getToast()
-                .verifyErrorMessage("Invalid username/password");
+                .verifyErrorMessage("Invalid username/passwor");
     }
 
 }
