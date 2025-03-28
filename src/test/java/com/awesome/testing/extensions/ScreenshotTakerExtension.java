@@ -30,8 +30,9 @@ public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext context) {
-        if (context.getExecutionException().isPresent()) {
-            log.info("Detected test failure, attempting to create a screenshot");
+        context.getExecutionException().ifPresent(throwable -> {
+            logError(context, throwable);
+
             try {
                 Path screenshotDir = Paths.get(SCREENSHOT_DIR);
                 ensureTheScreenshotDirectoryExists(screenshotDir);
@@ -46,7 +47,14 @@ public class ScreenshotTakerExtension implements AfterTestExecutionCallback {
             } catch (Exception e) {
                 log.error("Unexpected error during screenshot capture", e);
             }
-        }
+        });
+    }
+
+    private void logError(ExtensionContext context, Throwable throwable) {
+        log.error("Test {}#{} failed with an exception:",
+                context.getRequiredTestClass().getSimpleName(),
+                context.getRequiredTestMethod().getName(),
+                throwable);
     }
 
     private byte[] takeScreenshotAndSaveToFile(Path destinationPath) throws IOException {

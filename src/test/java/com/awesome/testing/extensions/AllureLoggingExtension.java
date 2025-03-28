@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
+
 @Slf4j
 @Order(2)
 public class AllureLoggingExtension implements BeforeEachCallback, AfterEachCallback {
@@ -29,13 +31,6 @@ public class AllureLoggingExtension implements BeforeEachCallback, AfterEachCall
 
     @Override
     public void afterEach(ExtensionContext context) {
-        context.getExecutionException().ifPresent(throwable ->
-                log.error("Test {}#{} failed with an exception:",
-                        context.getRequiredTestClass().getSimpleName(),
-                        context.getRequiredTestMethod().getName(),
-                        throwable)
-        );
-
         // Grab all logs from the in-memory appender
         String allLogs = inMemoryAppender.getAllLogs();
 
@@ -43,7 +38,7 @@ public class AllureLoggingExtension implements BeforeEachCallback, AfterEachCall
         // The extension name + test name can help you identify which test the logs came from
         String testName = context.getRequiredTestClass().getSimpleName() + "#" +
                 context.getRequiredTestMethod().getName();
-        Allure.addAttachment("Logs for " + testName, "text/plain", allLogs);
+        Allure.addAttachment("Logs for " + testName, "text/plain", new ByteArrayInputStream(allLogs.getBytes()), ".txt");
 
         // Detach our appender so it does not continue collecting logs for subsequent tests
         Logger rootLogger = (Logger) LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
