@@ -1,7 +1,7 @@
 # Selenium WebDriver BiDi Demo
 
-[![Selenium Version](https://img.shields.io/badge/Selenium-4.29.0-green)](https://www.selenium.dev/)
-[![Java Version](https://img.shields.io/badge/Java-21-blue)](https://www.oracle.com/java/)
+[![Selenium Version](https://img.shields.io/badge/Selenium-4.40.0-green)](https://www.selenium.dev/)
+[![Java Version](https://img.shields.io/badge/Java-25-blue)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.9+-orange)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
@@ -23,7 +23,7 @@ For a comprehensive guide on Selenium BiDi, check out:
 
 ### Prerequisites
 
-- Java 21
+- Java 25
 - Maven
 - Docker and Docker Compose (for running Selenium Grid)
 
@@ -93,4 +93,3 @@ allure generate target/allure-results -o target/allure-report --single-file
 ## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
