@@ -4,18 +4,19 @@ import com.awesome.testing.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TAHomePage extends BasePage {
 
-    @FindBy(className = "icon_mail")
-    private WebElement messagesIcon;
+    @FindBy(css = "a.top_messages")
+    private WebElement messagesLink;
 
     public TAHomePage(WebDriver driver) {
         super(driver);
     }
 
     public TAMessagesPage openProjects() {
-        messagesIcon.click();
+        wait.until(ExpectedConditions.elementToBeClickable(messagesLink)).click();
         return new TAMessagesPage(driver);
     }
 

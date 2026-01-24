@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
-import org.openqa.selenium.devtools.v134.emulation.Emulation;
+import org.openqa.selenium.devtools.v144.browser.Browser;
+import org.openqa.selenium.devtools.v144.browser.model.PermissionType;
+import org.openqa.selenium.devtools.v144.emulation.Emulation;
 import org.openqa.selenium.remote.Augmenter;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,10 +22,18 @@ public class GridGeoLocationTest extends RemoteTest {
         driver = new Augmenter().augment(driver);
         DevTools devTools = ((HasDevTools) driver).getDevTools();
         devTools.createSession();
+        devTools.send(Browser.grantPermissions(
+                List.of(PermissionType.GEOLOCATION),
+                Optional.of("https://my-location.org"),
+                Optional.empty()));
         devTools.send(Emulation.setGeolocationOverride(
                 Optional.of(52.5043),
                 Optional.of(13.4501),
-                Optional.of(1)));
+                Optional.of(1),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()));
     }
 
     @Test
