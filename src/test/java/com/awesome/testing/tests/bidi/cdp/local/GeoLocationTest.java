@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v144.browser.Browser;
-import org.openqa.selenium.devtools.v144.browser.model.PermissionType;
-import org.openqa.selenium.devtools.v144.emulation.Emulation;
+import org.openqa.selenium.devtools.v158.browser.Browser;
+import org.openqa.selenium.devtools.v158.browser.model.PermissionType;
+import org.openqa.selenium.devtools.v158.emulation.Emulation;
 
 import java.util.List;
 import java.util.Optional;

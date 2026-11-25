@@ -5,15 +5,17 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
-import org.openqa.selenium.devtools.v144.browser.Browser;
-import org.openqa.selenium.devtools.v144.browser.model.PermissionType;
-import org.openqa.selenium.devtools.v144.emulation.Emulation;
+import org.openqa.selenium.devtools.v158.browser.Browser;
+import org.openqa.selenium.devtools.v158.browser.model.PermissionType;
+import org.openqa.selenium.devtools.v158.emulation.Emulation;
 import org.openqa.selenium.remote.Augmenter;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
 public class GridGeoLocationTest extends RemoteTest {
 
@@ -42,7 +44,8 @@ public class GridGeoLocationTest extends RemoteTest {
         driver.get("https://my-location.org/");
 
         // then
-        assertThat(driver.findElement(By.id("address")).getText()).contains("Berlin");
+        await().atMost(Duration.ofSeconds(10)).untilAsserted(() ->
+                assertThat(driver.findElement(By.id("address")).getText()).contains("Berlin"));
     }
 
 }

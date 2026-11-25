@@ -1,6 +1,6 @@
 # Selenium WebDriver BiDi Demo
 
-[![Selenium Version](https://img.shields.io/badge/Selenium-4.40.0-green)](https://www.selenium.dev/)
+[![Selenium Version](https://img.shields.io/badge/Selenium-4.54.0-green)](https://www.selenium.dev/)
 [![Java Version](https://img.shields.io/badge/Java-25-blue)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.9+-orange)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
