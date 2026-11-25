@@ -1,7 +1,6 @@
 package com.awesome.testing.tests.bidi.cdp.remote;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.HasAuthentication;
@@ -17,9 +16,7 @@ public class GridBasicAuthTest extends RemoteTest {
 
     /**
      * Copy paste from https://github.com/SeleniumHQ/seleniumhq.github.io/blob/trunk//examples/java/src/test/java/dev/selenium/bidirectional/BidiApiRemotewebdriverTest.java
-     * Not working...
      */
-    @Disabled
     @Test
     public void basicAuth() {
         AtomicReference<DevTools> devToolsAtomicReference = new AtomicReference<>();

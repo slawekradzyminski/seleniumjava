@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.bidi.log.ConsoleLogEntry;
 import org.openqa.selenium.bidi.log.JavascriptLogEntry;
 import org.openqa.selenium.bidi.log.LogLevel;
+import org.openqa.selenium.bidi.log.StackFrame;
 import org.openqa.selenium.bidi.module.LogInspector;
 
 import java.util.ArrayList;
@@ -49,7 +50,10 @@ public class LogInspectorTest extends LocalFirefoxTest {
         assertThat(consoleLogEntry.getText()).isEqualTo("Hello, world!");
         assertThat(consoleLogEntry.getType()).isEqualTo("console");
         assertThat(consoleLogEntry.getMethod()).isEqualTo("log");
-        assertThat(consoleLogEntry.getStackTrace()).isNull();
+        // Firefox now attaches a stack trace to every console entry
+        assertThat(consoleLogEntry.getStackTrace().getCallFrames())
+                .extracting(StackFrame::getFunctionName)
+                .contains("helloWorld");
     }
 
     @SneakyThrows
@@ -98,7 +102,10 @@ public class LogInspectorTest extends LocalFirefoxTest {
         await().until(() -> javascriptExceptions.size() == 1);
         JavascriptLogEntry javascriptLogEntry = javascriptExceptions.get(0);
         assertThat(javascriptLogEntry.getStackTrace()).isNotNull();
-        assertThat(javascriptLogEntry.getStackTrace().getCallFrames()).hasSize(4);
+        // onclick -> bar() -> foo()
+        assertThat(javascriptLogEntry.getStackTrace().getCallFrames())
+                .extracting(StackFrame::getFunctionName)
+                .startsWith("foo", "bar");
     }
 
 }

@@ -1,6 +1,5 @@
 package com.awesome.testing.tests.bidi.w3c.remote;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.bidi.browsingcontext.BrowsingContext;
@@ -8,10 +7,6 @@ import org.openqa.selenium.bidi.browsingcontext.NavigationResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Doesn't work... why?
- */
-@Disabled
 public class GridBrowsingContextTest extends RemoteFirefoxTest {
 
     public static final String EXAMPLE_PAGE = "https://www.selenium.dev/selenium/web/bidi/logEntryAdded.html";

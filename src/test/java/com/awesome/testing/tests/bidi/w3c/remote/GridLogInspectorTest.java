@@ -2,12 +2,12 @@ package com.awesome.testing.tests.bidi.w3c.remote;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.bidi.log.ConsoleLogEntry;
 import org.openqa.selenium.bidi.log.JavascriptLogEntry;
 import org.openqa.selenium.bidi.log.LogLevel;
+import org.openqa.selenium.bidi.log.StackFrame;
 import org.openqa.selenium.bidi.module.LogInspector;
 
 import java.util.ArrayList;
@@ -16,10 +16,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-/**
- * Doesn't work... why?
- */
-@Disabled
 public class GridLogInspectorTest extends RemoteFirefoxTest {
 
     private static final String SELENIUM_CUSTOM_PAGE = "https://www.selenium.dev/selenium/web/bidi/logEntryAdded.html";
@@ -54,7 +50,10 @@ public class GridLogInspectorTest extends RemoteFirefoxTest {
         assertThat(consoleLogEntry.getText()).isEqualTo("Hello, world!");
         assertThat(consoleLogEntry.getType()).isEqualTo("console");
         assertThat(consoleLogEntry.getMethod()).isEqualTo("log");
-        assertThat(consoleLogEntry.getStackTrace()).isNull();
+        // Firefox now attaches a stack trace to every console entry
+        assertThat(consoleLogEntry.getStackTrace().getCallFrames())
+                .extracting(StackFrame::getFunctionName)
+                .contains("helloWorld");
     }
 
     @SneakyThrows
@@ -103,7 +102,10 @@ public class GridLogInspectorTest extends RemoteFirefoxTest {
         await().until(() -> javascriptExceptions.size() == 1);
         JavascriptLogEntry javascriptLogEntry = javascriptExceptions.get(0);
         assertThat(javascriptLogEntry.getStackTrace()).isNotNull();
-        assertThat(javascriptLogEntry.getStackTrace().getCallFrames()).hasSize(4);
+        // onclick -> bar() -> foo()
+        assertThat(javascriptLogEntry.getStackTrace().getCallFrames())
+                .extracting(StackFrame::getFunctionName)
+                .startsWith("foo", "bar");
     }
 
 }

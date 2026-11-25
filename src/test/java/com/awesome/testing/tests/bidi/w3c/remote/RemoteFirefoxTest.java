@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class RemoteFirefoxTest {
@@ -12,10 +13,11 @@ public abstract class RemoteFirefoxTest {
 
     @BeforeEach
     void setupDriver() {
-        driver = RemoteWebDriver.builder()
+        // Augmenter adds HasBiDi to RemoteWebDriver
+        driver = new Augmenter().augment(RemoteWebDriver.builder()
                 .address("http://localhost:4444/")
                 .addAlternative(getOptions())
-                .build();
+                .build());
     }
 
     private FirefoxOptions getOptions() {
